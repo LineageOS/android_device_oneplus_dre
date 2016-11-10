@@ -15,4 +15,10 @@
 #
 
 PRODUCT_MAKEFILES := \
+    $(LOCAL_DIR)/aosp_dre.mk \
     $(LOCAL_DIR)/lineage_dre.mk
+
+COMMON_LUNCH_CHOICES := \
+    aosp_dre-trunk_staging-user \
+    aosp_dre-trunk_staging-userdebug \
+    aosp_dre-trunk_staging-eng
