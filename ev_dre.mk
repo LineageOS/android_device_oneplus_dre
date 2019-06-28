@@ -13,12 +13,12 @@ TARGET_SCREEN_WIDTH := 1080
 
 # Overlays
 DEVICE_PACKAGE_OVERLAYS += \
-    $(LOCAL_PATH)/overlay-lineage
+    $(LOCAL_PATH)/overlay-ev
 
-# Inherit some common Lineage stuff.
-$(call inherit-product, vendor/lineage/config/common_full_phone.mk)
+# Inherit some common Evervolv stuff.
+$(call inherit-product, $(SRC_EVERVOLV_DIR)/config/common_full_phone.mk)
 
-PRODUCT_NAME := lineage_dre
+PRODUCT_NAME := ev_dre
 PRODUCT_MODEL := DE2117
 
 PRODUCT_GMS_CLIENTID_BASE := android-oneplus
