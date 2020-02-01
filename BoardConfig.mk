@@ -4,9 +4,7 @@
 # SPDX-License-Identifier: Apache-2.0
 #
 
-BUILD_BROKEN_DUP_RULES := true
-
-DEVICE_PATH := device/oneplus/dre
+COMMON_PATH := device/oneplus/dre
 
 # A/B
 AB_OTA_UPDATER := true
