@@ -102,6 +102,8 @@ blob_fixups: blob_fixups_user_type = {
         .regex_replace('FeatureType="8" Disable="false"', 'FeatureType="8" Disable="true"')
         .regex_replace('20121_v1_20201113', 'native')
         .regex_replace('SRGB', 'sRGB'),
+    'vendor/etc/perf/perfconfigstore.xml': blob_fixup()
+        .regex_replace('Name="ro.vendor.qti.sys.fw.bg_apps_limit" Value="16"', 'Name="ro.vendor.qti.sys.fw.bg_apps_limit" Value="38"'),
     'vendor/lib64/hw/com.qti.chi.override.so': blob_fixup()
         .add_needed('libcamera_metadata_shim.so'),
 }  # fmt: skip
