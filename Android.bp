@@ -4,6 +4,7 @@
 //
 
 soong_namespace {
+    imports: ["hardware/oplus"],
 }
 
 install_symlink {
