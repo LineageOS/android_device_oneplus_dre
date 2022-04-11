@@ -183,42 +183,6 @@ PRODUCT_COPY_FILES += \
     frameworks/native/data/etc/android.hardware.camera.full.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/android.hardware.camera.full.xml \
     frameworks/native/data/etc/android.hardware.camera.raw.xml:$(TARGET_COPY_OUT_VENDOR)/etc/permissions/android.hardware.camera.raw.xml
 
-# Common init scripts
-PRODUCT_PACKAGES += \
-    charger_fstab.qti \
-    fstab.qcom \
-    ftm_power_config.sh \
-    init.class_main.sh \
-    init.cust.rc \
-    init.kernel.post_boot.sh \
-    init.oem.debug.rc \
-    init.oem.rc \
-    init.oem_ftm.rc \
-    init.oem_rf.rc \
-    init.qcom.class_core.sh \
-    init.qcom.early_boot.sh \
-    init.qcom.factory.rc \
-    init.qcom.post_boot.sh \
-    init.qcom.rc \
-    init.qcom.sh \
-    init.qcom.usb.rc \
-    init.qcom.usb.sh \
-    init.qti.chg_policy.sh \
-    init.qti.dcvs.sh \
-    init.qti.kernel.rc \
-    init.qti.kernel.sh \
-    init.qti.qcv.rc \
-    init.qti.qcv.sh \
-    init.stnfc.rc \
-    init.stnfc.sh \
-    init.recovery.qcom.rc \
-    init.target.rc \
-    init.uicc.rc \
-    ueventd.qcom.rc \
-    vendor.oem_ftm.rc \
-    vendor.oem_ftm_svc_disable.rc \
-    vendor_modprobe.sh
-
 # Display
 PRODUCT_PACKAGES += \
     android.hardware.graphics.common-V1-ndk_platform.vendor \
