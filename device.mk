@@ -45,6 +45,8 @@ PRODUCT_ENFORCE_RRO_TARGETS := *
 PRODUCT_PACKAGES += \
     CarrierConfigResCommon \
     FrameworksResTarget \
+    OPlusFrameworksResCommon \
+    OPlusSettingsResCommon \
     WifiResTarget
 
 # AAPT
