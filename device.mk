@@ -36,6 +36,8 @@ $(call inherit-product, vendor/oneplus/dre/dre-vendor.mk)
 PRODUCT_SHIPPING_API_LEVEL := 30
 
 # Overlays
+$(call inherit-product, hardware/oplus/overlay/qssi/qssi.mk)
+
 DEVICE_PACKAGE_OVERLAYS += \
     $(LOCAL_PATH)/overlay-lineage
 
