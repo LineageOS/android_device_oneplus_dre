@@ -1,4 +1,5 @@
 <manifest version="2.0" type="device" target-level="5">
+    <kernel target-level="5"/>
     <hal format="hidl">
         <name>android.hardware.audio</name>
         <transport>hwbinder</transport>
@@ -113,9 +114,7 @@
         <name>android.hardware.radio</name>
         <transport>hwbinder</transport>
         <fqname>@1.2::ISap/slot1</fqname>
-        <fqname>@1.2::ISap/slot2</fqname>
         <fqname>@1.5::IRadio/slot1</fqname>
-        <fqname>@1.5::IRadio/slot2</fqname>
     </hal>
     <hal format="hidl">
         <name>android.hardware.radio.config</name>
@@ -124,15 +123,6 @@
         <interface>
             <name>IRadioConfig</name>
             <instance>default</instance>
-        </interface>
-    </hal>
-    <hal format="hidl">
-        <name>android.hardware.secure_element</name>
-        <transport>hwbinder</transport>
-        <version>1.2</version>
-        <interface>
-            <name>ISecureElement</name>
-            <instance>eSE1</instance>
         </interface>
     </hal>
     <hal format="hidl">
@@ -199,29 +189,11 @@
         </interface>
     </hal>
     <hal format="hidl">
-        <name>vendor.dolby.hardware.dms</name>
-        <transport>hwbinder</transport>
-        <version>2.0</version>
-        <interface>
-            <name>IDms</name>
-            <instance>default</instance>
-        </interface>
-    </hal>
-    <hal format="hidl">
-        <name>vendor.goodix.hardware.biometrics.fingerprint</name>
+        <name>vendor.goodix3626.hardware.biometrics.fingerprint</name>
         <transport>hwbinder</transport>
         <version>2.1</version>
         <interface>
             <name>IGoodixFingerprintDaemon</name>
-            <instance>default</instance>
-        </interface>
-    </hal>
-    <hal format="hidl">
-        <name>vendor.nxp.hardware.nfc</name>
-        <transport>hwbinder</transport>
-        <version>2.0</version>
-        <interface>
-            <name>INqNfc</name>
             <instance>default</instance>
         </interface>
     </hal>
@@ -271,24 +243,6 @@
         </interface>
     </hal>
     <hal format="hidl">
-        <name>vendor.oneplus.hardware.charger</name>
-        <transport>hwbinder</transport>
-        <version>1.0</version>
-        <interface>
-            <name>ICharger</name>
-            <instance>default</instance>
-        </interface>
-    </hal>
-    <hal format="hidl">
-        <name>vendor.oneplus.hardware.cwb</name>
-        <transport>hwbinder</transport>
-        <version>1.0</version>
-        <interface>
-            <name>ICwbService</name>
-            <instance>default</instance>
-        </interface>
-    </hal>
-    <hal format="hidl">
         <name>vendor.oneplus.hardware.display</name>
         <transport>hwbinder</transport>
         <version>1.0</version>
@@ -325,15 +279,6 @@
         </interface>
     </hal>
     <hal format="hidl">
-        <name>vendor.oneplus.hardware.lmvibrator</name>
-        <transport>hwbinder</transport>
-        <version>1.0</version>
-        <interface>
-            <name>ILinearMotorVibrator</name>
-            <instance>default</instance>
-        </interface>
-    </hal>
-    <hal format="hidl">
         <name>vendor.oneplus.hardware.param</name>
         <transport>hwbinder</transport>
         <version>1.0</version>
@@ -363,7 +308,7 @@
     <hal format="hidl">
         <name>vendor.qti.data.factory</name>
         <transport>hwbinder</transport>
-        <version>2.1</version>
+        <version>2.2</version>
         <interface>
             <name>IFactory</name>
             <instance>default</instance>
@@ -448,7 +393,6 @@
         <interface>
             <name>IDataConnection</name>
             <instance>slot1</instance>
-            <instance>slot2</instance>
         </interface>
     </hal>
     <hal format="hidl">
@@ -458,7 +402,6 @@
         <interface>
             <name>IIWlan</name>
             <instance>slot1</instance>
-            <instance>slot2</instance>
         </interface>
     </hal>
     <hal format="hidl">
@@ -480,15 +423,6 @@
         </interface>
     </hal>
     <hal format="hidl">
-        <name>vendor.qti.hardware.eid</name>
-        <transport>hwbinder</transport>
-        <version>1.0</version>
-        <interface>
-            <name>IEid</name>
-            <instance>default</instance>
-        </interface>
-    </hal>
-    <hal format="hidl">
         <name>vendor.qti.hardware.embmssl</name>
         <transport>hwbinder</transport>
         <version>1.1</version>
@@ -507,11 +441,11 @@
         </interface>
     </hal>
     <hal format="hidl">
-        <name>vendor.qti.hardware.iop</name>
+        <name>vendor.qti.hardware.fm</name>
         <transport>hwbinder</transport>
-        <version>2.0</version>
+        <version>1.0</version>
         <interface>
-            <name>IIop</name>
+            <name>IFmHci</name>
             <instance>default</instance>
         </interface>
     </hal>
@@ -531,15 +465,6 @@
         <interface>
             <name>IQccvndhal</name>
             <instance>qccvndhal</instance>
-        </interface>
-    </hal>
-    <hal format="hidl">
-        <name>vendor.qti.hardware.qconfig</name>
-        <transport>hwbinder</transport>
-        <version>1.0</version>
-        <interface>
-            <name>IQConfig</name>
-            <instance>default</instance>
         </interface>
     </hal>
     <hal format="hidl">
@@ -571,7 +496,6 @@
         <interface>
             <name>IQcRilAudio</name>
             <instance>slot1</instance>
-            <instance>slot2</instance>
         </interface>
     </hal>
     <hal format="hidl">
@@ -581,7 +505,6 @@
         <interface>
             <name>IImsRadio</name>
             <instance>imsradio0</instance>
-            <instance>imsradio1</instance>
         </interface>
     </hal>
     <hal format="hidl">
@@ -600,7 +523,6 @@
         <interface>
             <name>IUimLpa</name>
             <instance>UimLpa0</instance>
-            <instance>UimLpa1</instance>
         </interface>
     </hal>
     <hal format="hidl">
@@ -610,7 +532,6 @@
         <interface>
             <name>IQtiOemHook</name>
             <instance>oemhook0</instance>
-            <instance>oemhook1</instance>
         </interface>
     </hal>
     <hal format="hidl">
@@ -620,7 +541,6 @@
         <interface>
             <name>IQtiRadio</name>
             <instance>slot1</instance>
-            <instance>slot2</instance>
         </interface>
     </hal>
     <hal format="hidl">
@@ -630,7 +550,6 @@
         <interface>
             <name>IQtiRadio</name>
             <instance>slot1</instance>
-            <instance>slot2</instance>
         </interface>
     </hal>
     <hal format="hidl">
@@ -640,7 +559,6 @@
         <interface>
             <name>IUim</name>
             <instance>Uim0</instance>
-            <instance>Uim1</instance>
         </interface>
     </hal>
     <hal format="hidl">
@@ -650,7 +568,6 @@
         <interface>
             <name>IUimRemoteServiceClient</name>
             <instance>uimRemoteClient0</instance>
-            <instance>uimRemoteClient1</instance>
         </interface>
     </hal>
     <hal format="hidl">
@@ -660,16 +577,6 @@
         <interface>
             <name>IUimRemoteServiceServer</name>
             <instance>uimRemoteServer0</instance>
-            <instance>uimRemoteServer1</instance>
-        </interface>
-    </hal>
-    <hal format="hidl">
-        <name>vendor.qti.hardware.secureprocessor.device</name>
-        <transport>hwbinder</transport>
-        <version>1.0</version>
-        <interface>
-            <name>ISecureProcessor</name>
-            <instance>qti-tee</instance>
         </interface>
     </hal>
     <hal format="hidl">
@@ -697,15 +604,6 @@
         <interface>
             <name>ITuiComm</name>
             <instance>default</instance>
-        </interface>
-    </hal>
-    <hal format="hidl">
-        <name>vendor.qti.hardware.vpp</name>
-        <transport>hwbinder</transport>
-        <version>2.0</version>
-        <interface>
-            <name>IHidlVppService</name>
-            <instance>vppService</instance>
         </interface>
     </hal>
     <hal format="hidl">
@@ -774,4 +672,17 @@
             <instance>default</instance>
         </interface>
     </hal>
+    <hal format="hidl">
+        <name>vendor.rongcard.hardware.eid</name>
+        <transport>hwbinder</transport>
+        <version>1.0</version>
+        <interface>
+            <name>IEidDevice</name>
+            <instance>default</instance>
+        </interface>
+        <fqname>@1.0::IEidDevice/default</fqname>
+    </hal>
+    <sepolicy>
+        <version>30.0</version>
+    </sepolicy>
 </manifest>
