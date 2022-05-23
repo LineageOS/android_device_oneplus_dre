@@ -499,11 +499,6 @@ PRODUCT_PACKAGES += \
 PRODUCT_PACKAGES += \
     vendor.lineage.touch@1.0-service.oneplus
 
-# tri-state-key
-PRODUCT_PACKAGES += \
-    KeyHandler \
-    tri-state-key-calibrate
-
 # Update engine
 PRODUCT_PACKAGES += \
     update_engine \
