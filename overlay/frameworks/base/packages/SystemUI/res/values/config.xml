@@ -22,4 +22,7 @@
 <resources>
     <!-- Doze: does this device support STATE_DOZE?  -->
     <bool name="doze_display_state_supported">true</bool>
+
+    <!-- Respect drawable/rounded.xml intrinsic size for multiple radius corner path customization -->
+    <bool name="config_roundedCornerMultipleRadius">true</bool>
 </resources>
