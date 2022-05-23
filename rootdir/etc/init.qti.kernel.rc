@@ -45,6 +45,8 @@ on early-init
 
     write /proc/sys/kernel/sched_boost 1
 
+    write /proc/sys/kernel/firmware_config/force_sysfs_fallback 1
+
 on init
     # Create cgroup mount point for memory
     mkdir /sys/fs/cgroup/memory/bg 0750 root system
@@ -78,7 +80,7 @@ on early-boot
 on boot
     # Set the console loglevel to < KERN_WARN
     # Set the default message loglevel to KERN_INFO
-    write /proc/sys/kernel/printk "3 6 1 7"
+    write /proc/sys/kernel/printk "4 6 1 7"
 
     # Allow access to emmc rawdump block partition and dload sysfs node
     chown root system /dev/block/bootdevice/by-name/rawdump

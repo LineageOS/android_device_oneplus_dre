@@ -108,7 +108,10 @@ on fs
     write /sys/devices/platform/soc/984000.i2c/i2c-4/4-005d/tp_fw_update 0
     write /sys/devices/platform/soc/984000.i2c/i2c-4/4-0048/tp_fw_update 0
     write /sys/devices/platform/soc/a94000.i2c/i2c-4/4-005d/tp_fw_update 0
+    write /sys/devices/platform/soc/880000.i2c/i2c-0/0-0038/tp_fw_update 0
     write /sys/devices/platform/soc/880000.spi/spi_master/spi0/spi0.0/tp_fw_update 0
+#add for n200 
+    write /sys/devices/platform/soc/4a80000.spi/spi_master/spi0/spi0.0/tp_fw_update 0
 
 #add for tp debug log & to set node gesture_enable
     chown system system /proc/touchpanel/tp_debug_log
@@ -120,6 +123,7 @@ on fs
     chown system system /proc/touchpanel/tp_switch_corner_dead_p_zone
     chown system system /proc/touchpanel/touch_apk
     chown system system /proc/touchpanel/get_device_temperature
+    chown system system /proc/touchpanel/get_ic_firmware_version
 #   /* add for wireless charge */
     chown system system /proc/wireless/enable_tx
     chown system system /proc/wireless/enable_rx
@@ -132,6 +136,10 @@ on fs
     chown system system /proc/wireless/fast_skin_threld
 
     chown system system /proc/enhance_dash
+
+#gerry.ding@bsp, add for s2 reset config
+    chown system system /proc/s2_reset_config
+    chown system system /proc/pmicWd
 
 # rayboo.lin@bsp, 2020/09/09 add for simCard holder detect
     chmod 0666 /proc/simholder/sim_holder_detect
@@ -191,16 +199,16 @@ on fs
 #   Power@bsp, 2020/2/27, add for thermal
     chown system system /dev/msm_thermal
     chown system system /dev/skin_thermal
-    chown system system /dev/modem_skin_therm
-    chown system system /dev/mmw0_therm
-    chown system system /dev/mmw1_therm
-    chown system system /dev/mmw2_therm
+    chown system system /dev/modem_skin_thermal
+    chown system system /dev/mmw0_thermal
+    chown system system /dev/mmw1_thermal
+    chown system system /dev/mmw2_thermal
     chmod 0664 /dev/msm_thermal
     chmod 0664 /dev/skin_thermal
-    chmod 0664 /dev/modem_skin_therm
-    chmod 0664 /dev/mmw0_therm
-    chmod 0664 /dev/mmw1_therm
-    chmod 0664 /dev/mmw2_therm
+    chmod 0664 /dev/modem_skin_thermal
+    chmod 0664 /dev/mmw0_thermal
+    chmod 0664 /dev/mmw1_thermal
+    chmod 0664 /dev/mmw2_thermal
 
 #ifdef VENDOR_EDIT
 #if OP_FEATURE_MM_ADSP_MINIDUMP == 1
@@ -214,30 +222,35 @@ on fs
     chmod 0666 /sys/class/drm/card0-DSI-1/hbm_brightness
     chmod 0666 /sys/class/backlight/panel0-backlight/brightness
 #endif
-#   display add 2018/10/19  @lichao_display
-    chmod 0666 /sys/class/drm/card0-DSI-1/SRGB
-    chmod 0666 /sys/class/drm/card0-DSI-1/DCI_P3
-    chmod 0666 /sys/class/drm/card0-DSI-1/aod
-    chmod 0666 /sys/class/drm/card0-DSI-1/night_mode
-    chmod 0666 /sys/class/drm/card0-DSI-1/panel_serial_number
-    chmod 0666 /sys/class/drm/card0-DSI-1/oneplus_mode
-    chmod 0666 /sys/class/drm/card0-DSI-1/adaption_mode
-    chmod 0666 /sys/class/drm/card0-DSI-1/notify_fppress
-    chmod 0666 /sys/class/drm/card0-DSI-1/dim_alpha
-    chmod 0666 /sys/class/drm/card0-DSI-1/notify_dim
-    chmod 0666 /sys/class/drm/card0-DSI-1/force_screenfp
-    chmod 0666 /sys/class/drm/card0-DSI-1/native_display_p3_mode
-    chmod 0666 /sys/class/drm/card0-DSI-1/native_display_wide_color_mode
-    chmod 0666 /sys/class/drm/card0-DSI-1/native_display_srgb_color_mode
-    chmod 0666 /sys/devices/platform/soc/soc:qcom,dsi-display-primary/dynamic_dsi_clock
-    chown radio radio /sys/devices/platform/soc/soc:qcom,dsi-display-primary/dynamic_dsi_clock
-    chown radio radio /proc/force_reset
-    chmod 0666 /sys/class/drm/card0-DSI-1/native_display_loading_effect_mode
-    chmod 0666 /sys/class/drm/card0-DSI-1/native_display_customer_srgb_mode
-    chmod 0666 /sys/class/drm/card0-DSI-1/native_display_customer_p3_mode
-    chmod 0666 /sys/class/drm/card0-DSI-1/dimlayer_bl_en
-    chmod 0666 /sys/class/drm/card0-DSI-1/dither_en
-    chmod 0666 /sys/class/drm/card0-DSI-1/oplus_msd_aod
+#	display add 2018/10/19  @lichao_display
+	chmod 0666 /sys/class/drm/card0-DSI-1/SRGB
+	chmod 0666 /sys/class/drm/card0-DSI-1/DCI_P3
+	chmod 0666 /sys/class/drm/card0-DSI-1/aod
+	chmod 0666 /sys/class/drm/card0-DSI-1/night_mode
+	chmod 0666 /sys/class/drm/card0-DSI-1/panel_serial_number
+	chmod 0666 /sys/class/drm/card0-DSI-1/cabc
+	chmod 0666 /sys/class/drm/card0-DSI-1/oplus_shutdownflag
+	chmod 0666 /sys/class/drm/card0-DSI-1/oneplus_mode
+	chmod 0666 /sys/class/drm/card0-DSI-1/adaption_mode
+	chmod 0666 /sys/class/drm/card0-DSI-1/notify_fppress
+	chmod 0666 /sys/class/drm/card0-DSI-1/dim_alpha
+	chmod 0666 /sys/class/drm/card0-DSI-1/notify_dim
+	chmod 0666 /sys/class/drm/card0-DSI-1/force_screenfp
+	chmod 0666 /sys/class/drm/card0-DSI-1/native_display_p3_mode
+	chmod 0666 /sys/class/drm/card0-DSI-1/native_display_wide_color_mode
+	chmod 0666 /sys/class/drm/card0-DSI-1/native_display_srgb_color_mode
+	chmod 0666 /sys/devices/platform/soc/soc:qcom,dsi-display-primary/dynamic_dsi_clock
+	chown radio radio /sys/devices/platform/soc/soc:qcom,dsi-display-primary/dynamic_dsi_clock
+	chown radio radio /proc/force_reset
+	chmod 0666 /sys/class/drm/card0-DSI-1/native_display_loading_effect_mode
+	chmod 0666 /sys/class/drm/card0-DSI-1/native_display_customer_srgb_mode
+	chmod 0666 /sys/class/drm/card0-DSI-1/native_display_customer_p3_mode
+	chmod 0666 /sys/class/drm/card0-DSI-1/dimlayer_bl_en
+	chmod 0666 /sys/class/drm/card0-DSI-1/dither_en
+	chmod 0666 /sys/class/drm/card0-DSI-1/oplus_msd_aod
+
+	chmod 0666 /sys/class/drm/card0-DSI-1/osc_mode
+	chown radio radio /sys/class/drm/card0-DSI-1/osc_mode
 
 #   ken.lin@ASTI, 2019/6/21, add for fsc
     chown system system /sys/module/fsc/parameters/enable
@@ -253,6 +266,15 @@ on boot
     chmod 0664 sys/devices/platform/soc/soc:goodix_fp/screen_state
     chown system system sys/devices/platform/soc/soc:goodix_fp/screen_state
     chmod 0666 /dev/qseecom
+
+    # access permission for egis
+    chown system system /dev/esfp0
+    chmod 0666 /dev/esfp0
+    # access permission for egis navigation
+    chmod 0666 /sys/devices/platform/egis_input/navigation_event
+    chmod 0666 /sys/devices/platform/egis_input/navigation_enable
+    chown system system /sys/devices/platform/egis_input/navigation_event
+    chown system system /sys/devices/platform/egis_input/navigation_enable
 #endif
     setprop ro.nfc.port "I2C"
     chmod 0666 /dev/pn553
@@ -363,6 +385,11 @@ on post-fs
     chmod 660 /sys/class/power_supply/battery/op_disable_charge
     chown system system /sys/class/power_supply/bms/battery_h
     chmod 660 /sys/class/power_supply/bms/battery_h
+#brian@BSP, 2021/3/4, add for [IKR-43692] charging optimizated
+    chown system system /sys/class/power_supply/bms/full_available_capacity
+    chmod 660 /sys/class/power_supply/bms/full_available_capacity
+    chown system system /sys/class/power_supply/bms/full_charge_capacity_filtered
+    chmod 660 /sys/class/power_supply/bms/full_charge_capacity_filtered
 #endif
 #ifdef VENDOR_EDIT
 #randle.liu@optimization, 2020/04/24, [OSP-6116] avoid waking up when wireless charging disconnects
@@ -417,15 +444,16 @@ on post-fs-data
     chown system system /sys/module/houston/parameters/fps_boost_strategy
     chown system system /sys/module/houston/parameters/egl_buf
     chown system system /sys/module/houston/parameters/ht_online_config_update
-    # Jacky.Ho@OPTI 2020/09/30 add for [OPTI-85]
-    chown system system /sys/module/tpp/parameters/tpp_on
-    chown system system /sys/module/tpp/parameters/strategy
 
     # rock.lin@OPTI [OPTI-191] for power consumption
     chown system system /sys/module/cpufreq_bouncing/parameters/enable
     chown system system /sys/module/cpufreq_bouncing/parameters/config
 
-    # Ted.Lin@ASTI 2019/06/12 add for CONFIG_CONTROL_CENTER
+    # Jacky.Ho@OPTI 2020/09/30 add for [OPTI-85]
+    chown system system /sys/module/tpp/parameters/tpp_on
+    chown system system /sys/module/tpp/parameters/strategy
+
+# Ted.Lin@ASTI 2019/06/12 add for CONFIG_CONTROL_CENTER
     chown system system /dev/cc_ctl
     chown system system /proc/cc_ctl
 
@@ -476,6 +504,13 @@ on post-fs-data
     chmod 0666 /data/vendor/camera_update/reservetuningbin5
     chmod 0666 /data/vendor/camera_update/reservetuningbin6
 #endif
+
+# for battery charging off is call_state_change
+# jinguozhi@wt.network,20210207,add for battery charging off is call_state_change
+on property:persist.sys.chgdisabled=1
+   write /sys/class/power_supply/battery/call_mode 1
+on property:persist.sys.chgdisabled=0
+   write /sys/class/power_supply/battery/call_mode 0
 
 # add for SMT test enters WLAN FTM test in non-signaling
 service wififtmserver /vendor/bin/sh vendor/bin/wifi_ftm
@@ -605,6 +640,27 @@ on property:vendor.service.wifi.socket.lahaina.enable=0
 on property:vendor.service.wifi.socket.lahaina.enable=1
     start oemsysd
 
+service wifisocket-nord /system_ext/bin/diag_system_socket_log -a 181.157.1.200 -p 2500 -r 10000 -c 1
+    user root
+    group root system oem_2901
+    disabled
+    oneshot
+    seclabel u:r:logserver:s0
+
+service wifisocket-nord-stop /system_ext/bin/diag_system_socket_log -k
+    user root
+    group root system oem_2901
+    disabled
+    oneshot
+    seclabel u:r:logserver:s0
+
+on property:vendor.service.wifi.socket.nord.enable=1
+    start oemsysd
+    start wifisocket-nord
+
+on property:vendor.service.wifi.socket.nord.enable=0
+    stop oemsysd
+    start wifisocket-nord-stop
 #endif
 
 service ftmdaemon /system/vendor/bin/ftmdaemon -n
@@ -790,6 +846,13 @@ on property:persist.sys.oem.otg_support=false
     write /sys/class/oplus_chg/usb/otg_switch 0
 #endif
 
+#ifdef VENDOR_EDIT
+on property:persist.vendor.oem.wechat_cameraon=1
+    write /sys/class/oplus_chg/common/camera_on 1
+on property:persist.vendor.oem.wechat_cameraon=0
+    write /sys/class/oplus_chg/common/camera_on 0
+#endif
+
 on property:vendor.sys.op.game=1
     write  /proc/sys/kernel/sched_skip_affinity 1
 
@@ -818,6 +881,31 @@ service terminate_sniffer /vendor/bin/sh /vendor/bin/terminate_sniffer.sh
     group root
     disabled
     oneshot
+
+#v-krishna.rao@Connectivity, 2020/12/21 , servce to set iwpriv contention for btwifi coex debugging
+on property:persist.vendor.oem.btwificoex.debug=1
+    start startiwprivcontention
+
+on property:persist.vendor.oem.btwificoex.debug=0
+    start stopiwprivcontention
+
+on property:wlan.driver.status=ok && property:persist.vendor.oem.btwificoex.debug=1
+    start startiwprivcontention
+
+service startiwprivcontention /vendor/bin/sh /vendor/bin/startcontention.sh 1
+    class main
+    user root
+    group root
+    disabled
+    oneshot
+
+service stopiwprivcontention /vendor/bin/sh /vendor/bin/startcontention.sh 0
+    class main
+    user root
+    group root
+    disabled
+    oneshot
+
 #endif
 
 #ifdef VENDOR_EDIT
@@ -951,7 +1039,7 @@ service KmInstallKeybox20801 /vendor/bin/KmInstallKeybox /mnt/vendor/op2/.lii/ke
     seclabel u:r:keybox_oem:s0
 
 # yanamadala.ragini@SYSTEM, 2020/11/30, [AN-977] Add for keymaster key
-service KmInstallKeybox20828 /vendor/bin/KmInstallKeybox /mnt/vendor/op2/.lii/keyboxes_ciphered.xml OnePlus9G_Key_Attest_0 true
+service KmInstallKeybox20828 /vendor/bin/KmInstallKeybox /mnt/vendor/op2/.lii/keyboxes_ciphered.xml OnePlus9R_Key_Attest_0 true
     class core
     setenv LD_LIBRARY_PATH /vendor/lib64/hw
     user system
@@ -1011,6 +1099,46 @@ service KmInstallKeyboxLemonadept /vendor/bin/KmInstallKeybox /mnt/vendor/op2/.l
     oneshot
     seclabel u:r:keybox_oem:s0
 
+# braden.liu@SYSTEM, 2021/01/05 Update Google key box for check on Dre
+service KmInstallKeyboxDre8t /vendor/bin/KmInstallKeybox /mnt/vendor/op2/.lii/keyboxes_ciphered.xml OnePlusN200TMO_Key_Attest_0 true
+    class core
+    setenv LD_LIBRARY_PATH /vendor/lib64/hw
+    user system
+    group root
+    disabled
+    oneshot
+    seclabel u:r:keybox_oem:s0
+
+# braden.liu@SYSTEM, 2021/01/05 Update Google key box for check on Dre
+service KmInstallKeyboxDre8m /vendor/bin/KmInstallKeybox /mnt/vendor/op2/.lii/keyboxes_ciphered.xml OnePlusN200METRO_Key_Attest_0 true
+    class core
+    setenv LD_LIBRARY_PATH /vendor/lib64/hw
+    user system
+    group root
+    disabled
+    oneshot
+    seclabel u:r:keybox_oem:s0
+
+# braden.liu@SYSTEM, 2021/01/05 Update Google key box for check on Dre
+service KmInstallKeyboxDre9 /vendor/bin/KmInstallKeybox /mnt/vendor/op2/.lii/keyboxes_ciphered.xml OnePlusN200_Key_Attest_0 true
+    class core
+    setenv LD_LIBRARY_PATH /vendor/lib64/hw
+    user system
+    group root
+    disabled
+    oneshot
+    seclabel u:r:keybox_oem:s0
+
+# dongbin@WT_ODM_SYSTEM, 2021/01/27 Update Google key box for check on ebba
+service KmInstallKeybox20813 /vendor/bin/KmInstallKeybox /mnt/vendor/op2/.lii/keyboxes_ciphered.xml OnePlusNordCE_Key_Attest_00 true
+    class core
+    setenv LD_LIBRARY_PATH /vendor/lib64/hw
+    user system
+    group root
+    disabled
+    oneshot
+    seclabel u:r:keybox_oem:s0
+
 service keyboxxml /system/bin/mv /sdcard/.lii /mnt/vendor/op2/
     class core
     user root
@@ -1056,3 +1184,10 @@ on property:persist.vendor.oem.dump=0
 
 on property:persist.vendor.oem.dump=1
     setprop persist.vendor.zwriteback.backup 1
+
+#ifdef ODM_WT_EDIT Kai.Cao@ODM_WT.NW.SIM,BILLIE8-6704, 2020/07/13,Support single and dual card solutions
+on property:ro.boot.rf_version=0 && property:ro.boot.project_codename=billie8
+    setprop persist.radio.multisim.config "ssss"
+on property:ro.boot.rf_version=0 && property:ro.boot.project_codename=billie8t
+    setprop persist.radio.multisim.config "ssss"
+#endif

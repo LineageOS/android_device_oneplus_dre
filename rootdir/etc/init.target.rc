@@ -34,8 +34,7 @@ import /vendor/etc/init/hw/init.oem.carrier.rc
 
 on early-init
     exec u:r:vendor_modprobe:s0 -- /vendor/bin/vendor_modprobe.sh
-    exec u:r:vendor_modprobe:s0 -- /vendor/bin/modprobe -a -d /vendor/lib/modules q6_pdr_dlkm q6_notifier_dlkm snd_event_dlkm apr_dlkm adsp_loader_dlkm q6_dlkm native_dlkm pinctrl_wcd_dlkm pinctrl_lpi_dlkm swr_dlkm platform_dlkm hdmi_dlkm stub_dlkm wcd_core_dlkm wsa883x_dlkm bolero_cdc_dlkm wsa_macro_dlkm va_macro_dlkm rx_macro_dlkm tx_macro_dlkm bt_fm_slim wcd938x_dlkm wcd938x_slave_dlkm swr_dmic_dlkm tfa9894_dlkm swr_haptics_dlkm machine_dlkm radio-i2c-rtc6226-qca mmc_core mmc_block sdhci sdhci-pltfm sdhci-msm cdsprm
-    write /proc/sys/kernel/sched_boost 1
+    exec u:r:vendor_modprobe:s0 -- /vendor/bin/modprobe -a -d /vendor/lib/modules q6_pdr_dlkm q6_notifier_dlkm snd_event_dlkm apr_dlkm adsp_loader_dlkm q6_dlkm native_dlkm pinctrl_lpi_dlkm swr_dlkm platform_dlkm stub_dlkm wcd_core_dlkm wsa881x_analog_dlkm bolero_cdc_dlkm va_macro_dlkm rx_macro_dlkm tx_macro_dlkm bt_fm_slim wcd938x_dlkm wcd938x_slave_dlkm wcd937x_dlkm wcd937x_slave_dlkm machine_dlkm radio-i2c-rtc6226-qca mmc_core mmc_block sdhci sdhci-pltfm sdhci-msm cdsprm sia81xx_dlkm aw87xxx_dlkm
     wait /sys/devices/soc0/soc_id
 
 on init
@@ -59,16 +58,16 @@ on init
     chmod 0664 /dev/cpuctl/background/tasks
     chmod 0664 /dev/cpuctl/top-app/tasks
     chmod 0664 /dev/cpuctl/rt/tasks
+    #NFC
+    #chmod 0660 /dev/st21nfc
+    #chown nfc nfc /dev/st21nfc
     write /dev/cpuctl/foreground/cpu.rt_runtime_us 950000
     write /dev/cpuctl/background/cpu.rt_runtime_us 950000
     write /dev/cpuctl/top-app/cpu.rt_runtime_us 950000
     write /dev/cpuctl/rt/cpu.rt_runtime_us 950000
 
-    write /proc/restart_level_all 0
-    wait /dev/block/platform/soc/1d84000.ufshc
-    symlink /dev/block/platform/soc/1d84000.ufshc /dev/block/bootdevice
-    chown system system /sys/devices/platform/soc/1d84000.ufshc/auto_hibern8
-    chmod 0660 /sys/devices/platform/soc/1d84000.ufshc/auto_hibern8
+    wait /dev/block/platform/soc/${ro.boot.bootdevice}
+    symlink /dev/block/platform/soc/${ro.boot.bootdevice} /dev/block/bootdevice
     start logd
 
 on early-fs
@@ -76,18 +75,13 @@ on early-fs
 
 on fs
     start hwservicemanager
-    mkdir /mnt/vendor/spunvm 0660 system system
 #ifdef VENDOR_EDIT
-    mkdir /mnt/vendor/op1 0660 system system
     mkdir /mnt/vendor/op2 0660 system system
 #endif /* VENDOR_EDIT */
+    mount_all --early
 #ifdef VENDOR_EDIT
-    mount_all /vendor/etc/fstab.qcom --early
-# ajinath@SYSTEM, 2020/01/16, [OSP-2080] Recovery boot reason
     wait /mnt/vendor/op2
     chown system system /mnt/vendor/op2
-    mkdir /mnt/vendor/op2/rbr_log 0770 system system
-    setprop oem.rbr.log.clean 1
 #endif /* VENDOR_EDIT */
     chown root system /mnt/vendor/persist
     chmod 0771 /mnt/vendor/persist
@@ -95,28 +89,20 @@ on fs
     mkdir /mnt/vendor/persist/data 0700 system system
     mkdir /mnt/vendor/my_cota 0660 system system
 
-#ifdef VENDOR_EDIT
-#on fs && property:ro.boot.product.vendor.sku=lahaina
-#    mkdir /mnt/vendor/spunvm 0660 system system
-#    wait /dev/block/bootdevice/by-name/spunvm
-#    mount vfat /dev/block/bootdevice/by-name/spunvm /mnt/vendor/spunvm rw noatime shortname=lower,uid=1000,gid=1000,dmask=007,fmask=007,context=u:object_r:vendor_spunvm_file:s0
-#endif /* VENDOR_EDIT */
-
 on post-fs
     # set RLIMIT_MEMLOCK to 64MB
     setrlimit 8 67108864 67108864
+    write /dev/ipa 1
     mkdir /mnt/vendor/op2/recovery 0770 root system
 
 on late-fs
     wait_for_prop hwservicemanager.ready true
     #exec_start wait_for_keymaster
     start console
-    mount_all /vendor/etc/fstab.qcom --late
+    mount_all --late
 
 on post-fs-data
     mkdir /vendor/data/tombstones 0771 system system
-    # Enable WLAN cold boot calibration
-    write /sys/devices/platform/soc/b0000000.qcom,cnss-qca6490/fs_ready 1
 
 on early-boot
     start vendor.sensors
@@ -131,41 +117,28 @@ on boot
     chown cameraserver cameraserver /dev/cpuset/camera-daemon
     chown cameraserver cameraserver /dev/cpuset/camera-daemon/tasks
     chmod 0660 /dev/cpuset/camera-daemon/tasks
-    chown system /sys/devices/platform/soc/990000.i2c/i2c-0/0-0049/trusted_touch_enable
-    chmod 0660 /sys/devices/platform/soc/990000.i2c/i2c-0/0-0049/trusted_touch_enable
-    chown system /sys/devices/platform/soc/990000.i2c/i2c-0/0-0038/trusted_touch_enable
-    chmod 0660 /sys/devices/platform/soc/990000.i2c/i2c-0/0-0038/trusted_touch_enable
-    chown system /sys/devices/platform/soc/988000.i2c/i2c-1/1-0038/trusted_touch_enable
-    chmod 0660 /sys/devices/platform/soc/988000.i2c/i2c-1/1-0038/trusted_touch_enable
-    chown system /sys/devices/platform/soc/990000.i2c/i2c-0/0-0049/trusted_touch_event
-    chmod 0660 /sys/devices/platform/soc/990000.i2c/i2c-0/0-0049/trusted_touch_event
-    chown system /sys/devices/platform/soc/990000.i2c/i2c-0/0-0038/trusted_touch_event
-    chmod 0660 /sys/devices/platform/soc/990000.i2c/i2c-0/0-0038/trusted_touch_event
-    chown system /sys/devices/platform/soc/988000.i2c/i2c-1/1-0038/trusted_touch_event
-    chmod 0660 /sys/devices/platform/soc/988000.i2c/i2c-1/1-0038/trusted_touch_event
-    chown system /sys/devices/system/cpu/hyp_core_ctl/enable
-    chown system /sys/devices/system/cpu/hyp_core_ctl/hcc_min_freq
     #USB controller configuration
     setprop vendor.usb.rndis.func.name "gsi"
     setprop vendor.usb.rmnet.func.name "gsi"
     setprop vendor.usb.rmnet.inst.name "rmnet"
     setprop vendor.usb.dpl.inst.name "dpl"
     setprop vendor.usb.qdss.inst.name "qdss_mdm"
-    setprop vendor.usb.controller a600000.dwc3
-#ifdef VENDOR_EDIT
-    #Load WLAN driver
-    #exec_background u:r:vendor_modprobe:s0 -- /vendor/bin/modprobe -a -d /vendor/lib/modules/ qca_cld3_wlan
-    #exec_background u:r:vendor_modprobe:s0 -- /vendor/bin/modprobe -a -d /vendor/lib/modules/5.4-gki qca_cld3_wlan
-#endif
-    #Allow access to memory hotplug device attributes
-    chown system system /sys/kernel/mem-offline/anon_migrate
+    setprop vendor.usb.controller 4e00000.dwc3
+# v-takey.zheng@SYSTEM, 2020/06/03 Add for oemlogkit camera log
+    chmod 0666 /sys/module/cam_debug_util/parameters/debug_mdl
 
-    # Reduce default vibrator gain from 0x80 to 0x55,
-    # also allow gain customization via persistent property
-    write /sys/class/leds/vibrator/gain ${persist.vendor.vib.gain:-0x55}
+#ifdef VENDOR_EDIT
+# Fengfeng.XU@PERFORMANCE, 2020/07/30, Optimize the boot time and run the boot animation on the small core
+on boot
+    write /dev/cpuset/top-app/cpus 0-7
+    write /dev/cpuset/foreground/cpus 0-7
+    write /dev/cpuset/foreground/boost/cpus 0-7
+    write /dev/cpuset/system-background/cpus 0-7
+    write /dev/cpuset/background/cpus 0-3
+#endif /* VENDOR_EDIT */
 
 on property:vendor.display.lcd_density=560
-   setprop dalvik.vm.heapgrowthlimit 256m
+   setprop dalvik.vm.heapgrowthlimit 384m
 
 on property:vendor.display.lcd_density=640
    setprop dalvik.vm.heapgrowthlimit 512m
@@ -176,24 +149,16 @@ on boot && property:persist.vendor.usb.controller.default=*
 on property:vendor.usb.controller=*
     setprop sys.usb.controller ${vendor.usb.controller}
 
-#jack.liz@MM.audio, 2020/10/20, add for widvine licenses
-#ifdef/* VENDOR_EDIT */
-on property:sys.boot_completed=1
-    copy /vendor/etc/OnePlus_Widevine_2020_10_12.pfm /mnt/vendor/persist/data/pfm/licenses/OnePlus_Widevine_2020_10_12.pfm
-    chmod 0600 /mnt/vendor/persist/data/pfm/licenses/OnePlus_Widevine_2020_10_12.pfm
-    chown system system /mnt/vendor/persist/data/pfm/licenses/OnePlus_Widevine_2020_10_12.pfm
-#endif /* VENDOR_EDIT */
-
-on init && property:ro.boot.mode=charger
-    mount_all /vendor/etc/charger_fw_fstab.qti --early
-    write /sys/kernel/boot_adsp/boot 1
-    wait /sys/class/power_supply/battery
-
 on charger
+    mount_all /vendor/etc/charger_fstab.qti --early
+    write /sys/kernel/boot_adsp/boot 1
+    #restart charger after ADSP is out of reset
+    restart charger
     start qcom-post-boot
     write /sys/devices/system/cpu/cpufreq/policy0/scaling_governor schedutil
-    write /sys/devices/system/cpu/cpufreq/policy4/scaling_governor schedutil
-    write /sys/devices/system/cpu/cpufreq/policy0/scaling_max_freq 1286400
+    write /sys/devices/system/cpu/cpufreq/policy6/scaling_governor schedutil
+    write /sys/devices/system/cpu/cpufreq/policy0/scaling_max_freq 1324800
+
     write /sys/devices/system/cpu/cpu1/online 0
     write /sys/devices/system/cpu/cpu2/online 0
     write /sys/devices/system/cpu/cpu3/online 0
@@ -203,16 +168,10 @@ on charger
     write /sys/devices/system/cpu/cpu7/online 0
     write /sys/module/lpm_levels/parameters/sleep_disabled 0
     stop oemlogkit
-    stop vendor.ipacm
-    start vendor.power_off_alarm
-    setprop sys.usb.controller a600000.dwc3
-    setprop sys.usb.configfs 1
 
-service vendor.lowi /vendor/bin/lowirpcd
-   class core
-   user system
-   group system wakelock
-   capabilities BLOCK_SUSPEND
+    start vendor.power_off_alarm
+    setprop sys.usb.controller 4e00000.dwc3
+    setprop sys.usb.configfs 1
 
 #pd-mapper
 service vendor.pd_mapper /vendor/bin/pd-mapper
@@ -233,13 +192,22 @@ service vendor.per_proxy /vendor/bin/pm-proxy
     group system
     disabled
 
+#service vendor.mdm_helper /vendor/bin/mdm_helper
+#    class core
+#    group system wakelock
+#    disabled
+
+service vendor.mdm_launcher /vendor/bin/sh /vendor/bin/init.mdm.sh
+    class core
+    oneshot
+
 on property:init.svc.vendor.per_mgr=running
     start vendor.per_proxy
 
 on property:sys.shutdown.requested=*
     stop vendor.per_proxy
 
-#yuquan.fei@yuquan.fei, 2020/07/29, use cnss_diag to grab WiFi log
+on property:vold.decrypt=trigger_restart_framework
 #on property:vold.decrypt=trigger_restart_framework
 #   start vendor.cnss_diag
 #endif /* VENDOR_EDIT */
@@ -251,28 +219,3 @@ service vendor.cnss_diag /system/vendor/bin/cnss_diag -q -f -t HELIUM
    disabled
    oneshot
 
-#ifdef VENDOR_EDIT
-# ajinath@SYSTEM, 2020/01/16, [OSP-2080] Recovery boot reason
-on property:oem.rbr.log.clean=1
-   rm /op2/rbr_log/.last_init_boot_failed.log.busy
-   rm /op2/rbr_log/.last_init_boot_failed.log.done
-   rm /op2/rbr_log/last_init_boot_failed.log
-   rm /op2/rbr_log/last_init_boot_failed.1.log
-   rm /op2/rbr_log/last_system_boot_failed.log
-   setprop oem.rbr.log.clean 0
-#endif /* VENDOR_EDIT */
-
-# ifdef VENDOR_EDIT
-# george.yi, 2020/3/24, [OSP-4664] add for oemlogkit pull xlog to sdcard
-on property:persist.sys.oemlog.pullxlog=true
-   exec u:r:installd:s0 -- /system_ext/bin/pull_xlog.sh
-   setprop persist.sys.oemlog.pullxlog false
-# endif  /* VENDOR_EDIT */
-
-# steven.guo@display add LTM license
-#ifdef/* VENDOR_EDIT */
-on property:sys.boot_completed=1
-    copy /vendor/etc/OnePlus_QC_LTM_Commercial_SM8350_2021_01_19.pfm /mnt/vendor/persist/data/pfm/licenses/OnePlus_QC_LTM_Commercial_SM8350_2021_01_19.pfm
-    chmod 0600 /mnt/vendor/persist/data/pfm/licenses/OnePlus_QC_LTM_Commercial_SM8350_2021_01_19.pfm
-    chown system system /mnt/vendor/persist/data/pfm/licenses/OnePlus_QC_LTM_Commercial_SM8350_2021_01_19.pfm
-#endif /* VENDOR_EDIT */

@@ -171,6 +171,10 @@ firmware_directories /mnt/vendor/persist/copy/ /vendor/firmware_mnt/image/
 /dev/block/by-name/param  0660   root       system
 #endif VENDOR_EDIT
 
+# narci.gu@SYSTEM, 2020/12/08, add for serial number writing by wifi adb
+/dev/block/sde72          0600   system     system
+/dev/block/bootdevice/by-name/reserve1     0600   system     system
+
 #QDSS
 /dev/byte-cntr            0660   system    oem_2902
 /dev/mhi_qdss             0660   system    oem_2902
@@ -189,7 +193,7 @@ firmware_directories /mnt/vendor/persist/copy/ /vendor/firmware_mnt/image/
 /dev/wcnss_ctrl           0660   system     system
 /sys/devices/soc/a000000.qcom,wcnss-wlan/net/wlan0/queues/rx-* rps_cpus           0660   system     system
 /sys/devices/soc/a000000.qcom,wcnss-wlan/net/p2p0/queues/rx-* rps_cpus            0660   system     system
-/sys/devices/platform/soc/18800000.qcom,icnss/net/wlan*/queues/rx-* rps_cpus      0660   system     system
+/sys/devices/platform/soc/*.qcom,icnss/net/wlan*/queues/rx-* rps_cpus             0660   system     system
 /sys/devices/platform/soc/1c00000.qcom,pcie/pci0000:00/0000:00:00.0/0000:01:00.0/net/wlan*/queues/rx-* rps_cpus      0660   system     system
 /dev/spidev0.0            0660   system     audio
 /dev/i2c-7                0660   system     audio
@@ -317,6 +321,9 @@ firmware_directories /mnt/vendor/persist/copy/ /vendor/firmware_mnt/image/
 /sys/bus/pci/drivers/wil6210* 0000:01:00.0/net/wigig0/queues/rx-0/rps_cpus 0660 system system
 /sys/bus/pci/drivers/wil6210* 0000:01:00.0/net/wigig0/gro_flush_timeout 0660 system system
 /sys/devices/virtual/net/bond0 queues/rx-0/rps_cpus 0660 system system
+
+#NFC
+/dev/st21nfc              0660    nfc         nfc
 
 #nfc permissions
 /dev/nfc-nci              0660    nfc         nfc

@@ -3,47 +3,45 @@
 # All Rights Reserved.
 # Confidential and Proprietary - Qualcomm Technologies, Inc.
 #
-# Copyright (c) 2009-2012, 2014-2019, The Linux Foundation. All rights reserved.
+# Copyright (c) 2012-2013, 2016-2020, The Linux Foundation. All rights reserved.
 #
 # Redistribution and use in source and binary forms, with or without
-# modification, are permitted provided that the following conditions are met:
+# modification, are permitted provided that the following conditions are
+# met:
 #     * Redistributions of source code must retain the above copyright
 #       notice, this list of conditions and the following disclaimer.
-#     * Redistributions in binary form must reproduce the above copyright
-#       notice, this list of conditions and the following disclaimer in the
-#       documentation and/or other materials provided with the distribution.
-#     * Neither the name of The Linux Foundation nor
-#       the names of its contributors may be used to endorse or promote
-#       products derived from this software without specific prior written
-#       permission.
+#     * Redistributions in binary form must reproduce the above
+#       copyright notice, this list of conditions and the following
+#       disclaimer in the documentation and/or other materials provided
+#       with the distribution.
+#     * Neither the name of The Linux Foundation nor the names of its
+#       contributors may be used to endorse or promote products derived
+#       from this software without specific prior written permission.
 #
-# THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
-# AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
-# IMPLIED WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
-# NON-INFRINGEMENT ARE DISCLAIMED.  IN NO EVENT SHALL THE COPYRIGHT OWNER OR
-# CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL,
-# EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO,
-# PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS;
-# OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY,
-# WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR
-# OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF
-# ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+# THIS SOFTWARE IS PROVIDED "AS IS" AND ANY EXPRESS OR IMPLIED
+# WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF
+# MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NON-INFRINGEMENT
+# ARE DISCLAIMED.  IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS
+# BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
+# CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
+# SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR
+# BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY,
+# WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE
+# OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN
+# IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #=============================================================================
 
 function configure_zram_parameters() {
-	postboot_running=$(getprop vendor.sys.memplus.postboot 0)
-	if [ $postboot_running == 3 ];then
-		return
-	fi
+ 	postboot_running=$(getprop vendor.sys.memplus.postboot 0)
+ 	if [ $postboot_running == 3 ];then
+ 		return
+ 	fi
 
 	MemTotalStr=`cat /proc/meminfo | grep MemTotal`
 	MemTotal=${MemTotalStr:16:8}
 
-	low_ram=`getprop ro.config.low_ram`
-
-	# Zram disk - 75% for Go and < 2GB devices .
-	# For >2GB Non-Go devices, size = 50% of RAM size. Limit the size to 4GB.
-	# And enable lz4 zram compression for Go targets.
+	# Zram disk - 75% for < 2GB devices .
+	# For >2GB devices, size = 50% of RAM size. Limit the size to 4GB.
 
 	let RamSizeGB="( $MemTotal / 1048576 ) + 1"
 	diskSizeUnit=M
@@ -56,10 +54,6 @@ function configure_zram_parameters() {
 	# use MB avoid 32 bit overflow
 	if [ $zRamSizeMB -gt 4096 ]; then
 		let zRamSizeMB=4096
-	fi
-
-	if [ "$low_ram" == "true" ]; then
-		echo lz4 > /sys/block/zram0/comp_algorithm
 	fi
 
 	if [ -f /sys/block/zram0/disksize ]; then
@@ -88,9 +82,9 @@ function configure_read_ahead_kb_values() {
 
 	dmpts=$(ls /sys/block/*/queue/read_ahead_kb | grep -e dm -e mmc)
 
-	# Set 128 for <= 3GB &
-	# set 512 for >= 4GB targets.
-	if [ $MemTotal -le 3145728 ]; then
+	 # Set 128 for <= 4GB &
+         # set 512 for > 4GB targets.
+	if [ $MemTotal -le 4194304 ]; then
 		ra_kb=128
 	else
 		ra_kb=512
@@ -107,278 +101,238 @@ function configure_read_ahead_kb_values() {
 }
 
 # huangwen.chen@OPTI, 2020/05/14, add for zram writeback
-function configure_zram_writeback() {
-    # get backing storage size, unit: MB
-    backing_dev_size=$(getprop persist.vendor.zwriteback.backing_dev_size 2048)
-    case $backing_dev_size in
-        [1-9])
-            ;;
-        [1-9][0-9]*)
-            ;;
-        *)
-            backing_dev_size=2048
-            ;;
-    esac
-
-    dump_switch=$(getprop persist.vendor.zwriteback.backup)
-    wb_file="/data/vendor/swap/zram_wb"
-    if [[ -f $wb_file && $dump_switch == 1 ]];then
-        rm -f "/data/vendor/swap/zram_wb.old"
-        mv $wb_file "/data/vendor/swap/zram_wb.old"
-    fi
-    # create backing storage
-    # check if dd command success
-    ret=$(dd if=/dev/zero of=/data/vendor/swap/zram_wb bs=1m count=$backing_dev_size 2>&1)
-    if [ $? -ne 0 ];then
-        rm -f /data/vendor/swap/zram_wb
-        echo "memplus $ret" > /dev/kmsg
-        return 1
-    fi
-
-    # check if attaching file success
-    losetup -f
-    loop_device=$(losetup -f -s /data/vendor/swap/zram_wb 2>&1)
-    if [ $? -ne 0 ];then
-        rm -f /data/vendor/swap/zram_wb
-        echo "memplus $loop_device" > /dev/kmsg
-        return 1
-    fi
-    echo $loop_device > /sys/block/zram0/backing_dev
-
-    mem_limit=$(getprop persist.vendor.zwriteback.mem_limit)
-    case $mem_limit in
-        [1-9])
-            mem_limit="${mem_limit}M"
-            ;;
-        [1-9][0-9]*)
-            mem_limit="${mem_limit}M"
-            ;;
-        *)
-            mem_limit="1G"
-            ;;
-    esac
-    echo $mem_limit > /sys/block/zram0/mem_limit
-}
-
-# bin.zhong@ASTI, 2019/10/12, add for memplus
-function configure_memplus_parameters() {
-    bootmode=`getprop ro.vendor.factory.mode`
-    if [ "$bootmode" == "ftm" ] || [ "$bootmode" == "wlan" ] || [ "$bootmode" == "rf" ];then
-        return
-    fi
-    if [ ! $memplus_post_config ];then
-        return
-    fi
-    setprop vendor.sys.memplus.postboot 1
-    memplus=`getprop persist.vendor.memplus.enable`
-    case "$memplus" in
-        "0")
-            # diable swapspace
-            rm /data/vendor/swap/swapfile
-            echo "memplus swapoff start" > /dev/kmsg
-            ret=$(swapoff /dev/block/zram0 2>&1)
-            if [ $? -ne 0 ];then
-                echo "memplus $ret" > /dev/kmsg
-                return
-            fi
-            echo "memplus swapoff done" > /dev/kmsg
-            ;;
-        "1")
-            # enable memplus
-            rm /data/vendor/swap/swapfile
-            # reset zram swapspace
-            # huangwen.chen@OPTI, 2020/07/10 check if swapoff success
-            echo "memplus swapoff start" > /dev/kmsg
-            ret=$(swapoff /dev/block/zram0 2>&1)
-            if [ $? -ne 0 ];then
-                echo "memplus $ret" > /dev/kmsg
-                return
-            fi
-            echo "memplus swapoff done" > /dev/kmsg
-            echo 1 > /sys/block/zram0/reset
-
-            # huangwen.chen@OPTI, 2020/05/21 set zram disksize by property
-            disksize=$(getprop persist.vendor.zwriteback.disksize 4096)
-            case $disksize in
-                [1-9])
-                    disksize="${disksize}M"
-                    ;;
-                [1-9][0-9]*)
-                    disksize="${disksize}M"
-                    ;;
-                *)
-                    disksize="2100M"
-                    ;;
-            esac
-
-            # huangwen.chen@OPTI, 2020/05/14 add for zram writeback
-            # check if ZRAM_WRITEBACK_CONFIG enable
-            writeback_file="/sys/block/zram0/writeback"
-            zwriteback=$(getprop persist.vendor.zwriteback.enable 1)
-            if [[ -f $writeback_file && $zwriteback == 1 ]];then
-                configure_zram_writeback
-                # check if configure_zram_writeback success
-                if [ $? -ne 0 ];then
-                    echo 0 > /sys/block/zram0/mem_limit
-                fi
-            else
-                rm -f /data/vendor/swap/zram_wb
-                disksize="2100M"
-                echo 0 > /sys/block/zram0/mem_limit
-            fi
-            echo $disksize > /sys/block/zram0/disksize
-
-            mkswap /dev/block/zram0
-            echo "memplus swapon start" > /dev/kmsg
-            swapon /dev/block/zram0 -p 32758
-            if [ $? -eq 0 ]; then
-                echo 1 > /sys/module/memplus_core/parameters/memory_plus_enabled
-            fi
-            echo "memplus swapon done" > /dev/kmsg
-            ;;
-        *)
-            #enable kswapd
-            rm /data/vendor/swap/swapfile
-            # reset zram swapspace
-            # huangwen.chen@OPTI, 2020/07/10 check if swapoff success
-            echo "memplus swapoff start" > /dev/kmsg
-            ret=$(swapoff /dev/block/zram0 2>&1)
-            if [ $? -ne 0 ];then
-                echo "memplus $ret" > /dev/kmsg
-                return
-            fi
-            echo "memplus swapoff done" > /dev/kmsg
-            echo 1 > /sys/block/zram0/reset
-            echo lz4 > /sys/block/zram0/comp_algorithm
-
-
-            # huangwen.chen@OPTI, 2020/05/21 set zram disksize by property
-            disksize=$(getprop persist.vendor.zwriteback.disksize 4096)
-            case $disksize in
-                [1-9])
-                    disksize="${disksize}M"
-                    ;;
-                [1-9][0-9]*)
-                    disksize="${disksize}M"
-                    ;;
-                *)
-                    disksize="2100M"
-                    ;;
-            esac
-            # huangwen.chen@OPTI, 2020/05/14 add for zram writeback
-            # check if ZRAM_WRITEBACK_CONFIG enable
-            writeback_file="/sys/block/zram0/writeback"
-            zwriteback=$(getprop persist.vendor.zwriteback.enable 1)
-            if [[ -f $writeback_file && $zwriteback == 1 ]];then
-                configure_zram_writeback
-                if [ $? -ne 0 ];then
-                    echo 0 > /sys/block/zram0/mem_limit
-                fi
-            else
-                rm -f /data/vendor/swap/zram_wb
-                disksize="2100M"
-                echo 0 > /sys/block/zram0/mem_limit
-            fi
-            echo $disksize > /sys/block/zram0/disksize
-
-            mkswap /dev/block/zram0
-            echo "memplus swapon start" > /dev/kmsg
-            swapon /dev/block/zram0 -p 32758
-            if [ $? -eq 0 ]; then
-                echo 0 > /sys/module/memplus_core/parameters/memory_plus_enabled
-            fi
-            echo "memplus swapon done" > /dev/kmsg
-            ;;
-    esac
-    setprop vendor.sys.memplus.postboot 2
-}
+ function configure_zram_writeback() {
+     # get backing storage size, unit: MB
+     backing_dev_size=$(getprop persist.vendor.zwriteback.backing_dev_size 2048)
+     case $backing_dev_size in
+         [1-9])
+             ;;
+         [1-9][0-9]*)
+             ;;
+         *)
+             backing_dev_size=2048
+             ;;
+     esac
+ 
+     dump_switch=$(getprop persist.vendor.zwriteback.backup)
+     wb_file="/data/vendor/swap/zram_wb"
+     if [[ -f $wb_file && $dump_switch == 1 ]];then
+         rm -f "/data/vendor/swap/zram_wb.old"
+         mv $wb_file "/data/vendor/swap/zram_wb.old"
+     fi
+     # create backing storage
+     # check if dd command success
+     ret=$(dd if=/dev/zero of=/data/vendor/swap/zram_wb bs=1m count=$backing_dev_size 2>&1)
+     if [ $? -ne 0 ];then
+         rm -f /data/vendor/swap/zram_wb
+         echo "memplus $ret" > /dev/kmsg
+         return 1
+     fi
+ 
+     # check if attaching file success
+     losetup -f
+     loop_device=$(losetup -f -s /data/vendor/swap/zram_wb 2>&1)
+     if [ $? -ne 0 ];then
+         rm -f /data/vendor/swap/zram_wb
+         echo "memplus $loop_device" > /dev/kmsg
+         return 1
+     fi
+     echo $loop_device > /sys/block/zram0/backing_dev
+ 
+     mem_limit=$(getprop persist.vendor.zwriteback.mem_limit)
+     case $mem_limit in
+         [1-9])
+             mem_limit="${mem_limit}M"
+             ;;
+         [1-9][0-9]*)
+             mem_limit="${mem_limit}M"
+             ;;
+         *)
+             mem_limit="1G"
+             ;;
+     esac
+     echo $mem_limit > /sys/block/zram0/mem_limit
+ }
+ 
+ # bin.zhong@ASTI, 2019/10/12, add for memplus
+ function configure_memplus_parameters() {
+     bootmode=`getprop ro.vendor.factory.mode`
+     if [ "$bootmode" == "ftm" ] || [ "$bootmode" == "wlan" ] || [ "$bootmode" == "rf" ];then
+         return
+     fi
+     if [ ! $memplus_post_config ];then
+         return
+     fi
+     setprop vendor.sys.memplus.postboot 1
+     memplus=`getprop persist.vendor.memplus.enable`
+     case "$memplus" in
+         "0")
+             # diable swapspace
+             rm /data/vendor/swap/swapfile
+             echo "memplus swapoff start" > /dev/kmsg
+             ret=$(swapoff /dev/block/zram0 2>&1)
+             if [ $? -ne 0 ];then
+                 echo "memplus $ret" > /dev/kmsg
+                 return
+             fi
+             echo "memplus swapoff done" > /dev/kmsg
+             ;;
+         "1")
+             # enable memplus
+             rm /data/vendor/swap/swapfile
+             # reset zram swapspace
+             # huangwen.chen@OPTI, 2020/07/10 check if swapoff success
+             echo "memplus swapoff start" > /dev/kmsg
+             ret=$(swapoff /dev/block/zram0 2>&1)
+             if [ $? -ne 0 ];then
+                 echo "memplus $ret" > /dev/kmsg
+                 return
+             fi
+             echo "memplus swapoff done" > /dev/kmsg
+             echo 1 > /sys/block/zram0/reset
+ 
+             # huangwen.chen@OPTI, 2020/05/21 set zram disksize by property
+             disksize=$(getprop persist.vendor.zwriteback.disksize 2048)
+             case $disksize in
+                 [1-9])
+                     disksize="${disksize}M"
+                     ;;
+                 [1-9][0-9]*)
+                     disksize="${disksize}M"
+                     ;;
+                 *)
+                     disksize="2100M"
+                     ;;
+             esac
+ 
+             # huangwen.chen@OPTI, 2020/05/14 add for zram writeback
+             # check if ZRAM_WRITEBACK_CONFIG enable
+             writeback_file="/sys/block/zram0/writeback"
+             zwriteback=$(getprop persist.vendor.zwriteback.enable 0)
+             if [[ -f $writeback_file && $zwriteback == 1 ]];then
+                 configure_zram_writeback
+                 # check if configure_zram_writeback success
+                 if [ $? -ne 0 ];then
+                     echo 0 > /sys/block/zram0/mem_limit
+                 fi
+             else
+                 rm -f /data/vendor/swap/zram_wb
+                 disksize="2100M"
+                 echo 0 > /sys/block/zram0/mem_limit
+             fi
+             echo $disksize > /sys/block/zram0/disksize
+ 
+             mkswap /dev/block/zram0
+             echo "memplus swapon start" > /dev/kmsg
+             swapon /dev/block/zram0 -p 32758
+             if [ $? -eq 0 ]; then
+                 echo 1 > /sys/module/memplus_core/parameters/memory_plus_enabled
+             fi
+             echo "memplus swapon done" > /dev/kmsg
+             ;;
+         *)
+             #enable kswapd
+             rm /data/vendor/swap/swapfile
+             # reset zram swapspace
+             # huangwen.chen@OPTI, 2020/07/10 check if swapoff success
+             echo "memplus swapoff start" > /dev/kmsg
+             ret=$(swapoff /dev/block/zram0 2>&1)
+             if [ $? -ne 0 ];then
+                 echo "memplus $ret" > /dev/kmsg
+                 return
+             fi
+             echo "memplus swapoff done" > /dev/kmsg
+             echo 1 > /sys/block/zram0/reset
+             echo zstd > /sys/block/zram0/comp_algorithm
+             # huangwen.chen@OPTI, 2020/05/21 set zram disksize by property
+             disksize=$(getprop persist.vendor.zwriteback.disksize 2048)
+             case $disksize in
+                 [1-9])
+                     disksize="${disksize}M"
+                     ;;
+                 [1-9][0-9]*)
+                     disksize="${disksize}M"
+                     ;;
+                 *)
+                     disksize="2100M"
+                     ;;
+             esac
+             # huangwen.chen@OPTI, 2020/05/14 add for zram writeback
+             # check if ZRAM_WRITEBACK_CONFIG enable
+             writeback_file="/sys/block/zram0/writeback"
+             zwriteback=$(getprop persist.vendor.zwriteback.enable 0)
+             if [[ -f $writeback_file && $zwriteback == 1 ]];then
+                 configure_zram_writeback
+                 if [ $? -ne 0 ];then
+                     echo 0 > /sys/block/zram0/mem_limit
+                 fi
+             else
+                 rm -f /data/vendor/swap/zram_wb
+                 disksize="2100M"
+                 echo 0 > /sys/block/zram0/mem_limit
+             fi
+             echo $disksize > /sys/block/zram0/disksize
+ 
+             mkswap /dev/block/zram0
+             echo "memplus swapon start" > /dev/kmsg
+             swapon /dev/block/zram0 -p 32758
+             if [ $? -eq 0 ]; then
+                 echo 0 > /sys/module/memplus_core/parameters/memory_plus_enabled
+             fi
+             echo "memplus swapon done" > /dev/kmsg
+             ;;
+     esac
+     setprop vendor.sys.memplus.postboot 2
+ }
 
 function configure_memory_parameters() {
 	# Set Memory parameters.
-	#
-	# Set per_process_reclaim tuning parameters
-	# All targets will use vmpressure range 50-70,
-	# All targets will use 512 pages swap size.
-	#
-	# Set Low memory killer minfree parameters
-	# 32 bit Non-Go, all memory configurations will use 15K series
-	# 32 bit Go, all memory configurations will use uLMK + Memcg
-	# 64 bit will use Google default LMK series.
-	#
-	# Set ALMK parameters (usually above the highest minfree values)
-	# vmpressure_file_min threshold is always set slightly higher
-	# than LMK minfree's last bin value for all targets. It is calculated as
-	# vmpressure_file_min = (last bin - second last bin ) + last bin
-	#
-	# Set allocstall_threshold to 0 for all targets.
-	#
-    MemTotalStr=`cat /proc/meminfo | grep MemTotal`
-    MemTotal=${MemTotalStr:16:8}
 
+	# Set swappiness to 180 for all targets
+	     echo 180 > /proc/sys/vm/swappiness
+             echo 0 > /proc/sys/vm/direct_swappiness
+
+	# Disable wsf for all targets beacause we are using efk.
+	# wsf Range : 1..1000 So set to bare minimum value 1.
+	echo 1 > /proc/sys/vm/watermark_scale_factor
 	configure_zram_parameters
 	configure_read_ahead_kb_values
 	echo 0 > /proc/sys/vm/page-cluster
-	echo 100 > /proc/sys/vm/swappiness
-    # set watermark_scale_factor = 36MB * 1024 * 1024 * 10 / MemTotal
-    factor=`expr 377487360 / $MemTotal`
-    echo $factor > /proc/sys/vm/watermark_scale_factor
 
-    # set min_free_kbytes = 32MB
-    echo 32768 > /proc/sys/vm/min_free_kbytes
+	#Spawn 2 kswapd threads which can help in fast reclaiming of pages
+	echo 2 > /proc/sys/vm/kswapd_threads
 }
 
-rev=`cat /sys/devices/soc0/revision`
-ddr_type=`od -An -tx /proc/device-tree/memory/ddr_device_type`
-ddr_type4="07"
-ddr_type5="08"
+# Core control parameters for silver
+echo 0 0 0 0 1 1 > /sys/devices/system/cpu/cpu0/core_ctl/not_preferred
+echo 4 > /sys/devices/system/cpu/cpu0/core_ctl/min_cpus
+echo 60 > /sys/devices/system/cpu/cpu0/core_ctl/busy_up_thres
+echo 40 > /sys/devices/system/cpu/cpu0/core_ctl/busy_down_thres
+echo 100 > /sys/devices/system/cpu/cpu0/core_ctl/offline_delay_ms
+echo 8 > /sys/devices/system/cpu/cpu0/core_ctl/task_thres
 
-# Core control parameters for gold
-echo 2 > /sys/devices/system/cpu/cpu4/core_ctl/min_cpus
-echo 60 > /sys/devices/system/cpu/cpu4/core_ctl/busy_up_thres
-echo 30 > /sys/devices/system/cpu/cpu4/core_ctl/busy_down_thres
-echo 100 > /sys/devices/system/cpu/cpu4/core_ctl/offline_delay_ms
-echo 3 > /sys/devices/system/cpu/cpu4/core_ctl/task_thres
+# Enable Core control for Silver
+echo 1 > /sys/devices/system/cpu/cpu0/core_ctl/enable
 
-# Core control parameters for gold+
-echo 0 > /sys/devices/system/cpu/cpu7/core_ctl/min_cpus
-echo 60 > /sys/devices/system/cpu/cpu7/core_ctl/busy_up_thres
-echo 30 > /sys/devices/system/cpu/cpu7/core_ctl/busy_down_thres
-echo 100 > /sys/devices/system/cpu/cpu7/core_ctl/offline_delay_ms
-echo 1 > /sys/devices/system/cpu/cpu7/core_ctl/task_thres
-
-# Controls how many more tasks should be eligible to run on gold CPUs
-# w.r.t number of gold CPUs available to trigger assist (max number of
-# tasks eligible to run on previous cluster minus number of CPUs in
-# the previous cluster).
-#
-# Setting to 1 by default which means there should be at least
-# 4 tasks eligible to run on gold cluster (tasks running on gold cores
-# plus misfit tasks on silver cores) to trigger assitance from gold+.
-echo 1 > /sys/devices/system/cpu/cpu7/core_ctl/nr_prev_assist_thresh
-
-# Disable Core control on silver
-echo 0 > /sys/devices/system/cpu/cpu0/core_ctl/enable
+# Disable Core control on gold
+echo 0 > /sys/devices/system/cpu/cpu6/core_ctl/enable
 
 # Setting b.L scheduler parameters
-echo 95 95 > /proc/sys/kernel/sched_upmigrate
-echo 85 85 > /proc/sys/kernel/sched_downmigrate
-echo 100 > /proc/sys/kernel/sched_group_upmigrate
+echo 65 > /proc/sys/kernel/sched_downmigrate
+echo 71 > /proc/sys/kernel/sched_upmigrate
 echo 85 > /proc/sys/kernel/sched_group_downmigrate
+echo 100 > /proc/sys/kernel/sched_group_upmigrate
 echo 1 > /proc/sys/kernel/sched_walt_rotate_big_tasks
-echo 400000000 > /proc/sys/kernel/sched_coloc_downmigrate_ns
-echo 39000000 39000000 39000000 39000000 39000000 39000000 39000000 5000000 > /proc/sys/kernel/sched_coloc_busy_hyst_cpu_ns
-echo 240 > /proc/sys/kernel/sched_coloc_busy_hysteresis_enable_cpus
-echo 10 10 10 10 10 10 10 95 > /proc/sys/kernel/sched_coloc_busy_hyst_cpu_busy_pct
+echo 0 > /proc/sys/kernel/sched_coloc_busy_hysteresis_enable_cpus
+echo 0 > /proc/sys/kernel/sched_busy_hysteresis_enable_cpus
+echo 5 > /proc/sys/kernel/sched_ravg_window_nr_ticks
 
-# set the threshold for low latency task boost feature which prioritize
-# binder activity tasks
-echo 325 > /proc/sys/kernel/walt_low_latency_task_threshold
+# disable unfiltering
+echo 20000000 > /proc/sys/kernel/sched_task_unfilter_period
 
 # cpuset parameters
-echo 0-3 > /dev/cpuset/background/cpus
-echo 0-3 > /dev/cpuset/system-background/cpus
-# jared.wu@OPTIMIZATION, 2020/09/22, Make foreground run on cpu 0-6
-echo 0-6 > /dev/cpuset/foreground/cpus
+echo 0-5 > /dev/cpuset/background/cpus
+echo 0-5 > /dev/cpuset/system-background/cpus
 
 # Turn off scheduler boost at the end
 echo 0 > /proc/sys/kernel/sched_boost
@@ -387,105 +341,65 @@ echo 0 > /proc/sys/kernel/sched_boost
 echo "schedutil" > /sys/devices/system/cpu/cpufreq/policy0/scaling_governor
 echo 0 > /sys/devices/system/cpu/cpufreq/policy0/schedutil/down_rate_limit_us
 echo 0 > /sys/devices/system/cpu/cpufreq/policy0/schedutil/up_rate_limit_us
-if [ $rev == "1.0" ]; then
-	echo 1190400 > /sys/devices/system/cpu/cpufreq/policy0/schedutil/hispeed_freq
-else
-	echo 1209600 > /sys/devices/system/cpu/cpufreq/policy0/schedutil/hispeed_freq
-fi
-echo 691200 > /sys/devices/system/cpu/cpufreq/policy0/scaling_min_freq
-echo 1 > /sys/devices/system/cpu/cpufreq/policy0/schedutil/pl
-
-# configure input boost settings
-if [ $rev == "1.0" ]; then
-	echo "0:1382800" > /sys/devices/system/cpu/cpu_boost/input_boost_freq
-else
-	echo "0:1305600" > /sys/devices/system/cpu/cpu_boost/input_boost_freq
-fi
-echo 120 > /sys/devices/system/cpu/cpu_boost/input_boost_ms
+echo 1190400 > /sys/devices/system/cpu/cpufreq/policy0/schedutil/hispeed_freq
+echo 576000 > /sys/devices/system/cpu/cpufreq/policy0/scaling_min_freq
 
 # configure governor settings for gold cluster
-echo "schedutil" > /sys/devices/system/cpu/cpufreq/policy4/scaling_governor
-echo 0 > /sys/devices/system/cpu/cpufreq/policy4/schedutil/down_rate_limit_us
-echo 0 > /sys/devices/system/cpu/cpufreq/policy4/schedutil/up_rate_limit_us
-if [ $rev == "1.0" ]; then
-	echo 1497600 > /sys/devices/system/cpu/cpufreq/policy4/schedutil/hispeed_freq
-else
-	echo 1555200 > /sys/devices/system/cpu/cpufreq/policy4/schedutil/hispeed_freq
-fi
-echo 1 > /sys/devices/system/cpu/cpufreq/policy4/schedutil/pl
+echo "schedutil" > /sys/devices/system/cpu/cpufreq/policy6/scaling_governor
+echo 0 > /sys/devices/system/cpu/cpufreq/policy6/schedutil/down_rate_limit_us
+echo 0 > /sys/devices/system/cpu/cpufreq/policy6/schedutil/up_rate_limit_us
+echo 1248000 > /sys/devices/system/cpu/cpufreq/policy6/schedutil/hispeed_freq
+echo 768000 > /sys/devices/system/cpu/cpufreq/policy6/scaling_min_freq
 
-# configure governor settings for gold+ cluster
-echo "schedutil" > /sys/devices/system/cpu/cpufreq/policy7/scaling_governor
-echo 0 > /sys/devices/system/cpu/cpufreq/policy7/schedutil/down_rate_limit_us
-echo 0 > /sys/devices/system/cpu/cpufreq/policy7/schedutil/up_rate_limit_us
-if [ $rev == "1.0" ]; then
-	echo 1536000 > /sys/devices/system/cpu/cpufreq/policy7/schedutil/hispeed_freq
-else
-	echo 1670400 > /sys/devices/system/cpu/cpufreq/policy7/schedutil/hispeed_freq
-fi
-echo 1 > /sys/devices/system/cpu/cpufreq/policy7/schedutil/pl
+# Colocation V3 settings
+echo 680000 > /sys/devices/system/cpu/cpufreq/policy0/schedutil/rtg_boost_freq
+echo 0 > /sys/devices/system/cpu/cpufreq/policy6/schedutil/rtg_boost_freq
+echo 51 > /proc/sys/kernel/sched_min_task_util_for_boost
+echo 35 > /proc/sys/kernel/sched_min_task_util_for_colocation
 
+# sched_load_boost as -6 is equivalent to target load as 85. It is per cpu tunable.
+echo -6 > /sys/devices/system/cpu/cpu6/sched_load_boost
+echo -6 > /sys/devices/system/cpu/cpu7/sched_load_boost
+echo 85 > /sys/devices/system/cpu/cpufreq/policy6/schedutil/hispeed_load
 
-# tedlin, chown sysfs node to system
-chown -R system:system /sys/devices/system/cpu/cpufreq/policy0/schedutil/target_loads
-chown -R system:system /sys/devices/system/cpu/cpufreq/policy4/schedutil/target_loads
-chown -R system:system /sys/devices/system/cpu/cpufreq/policy7/schedutil/target_loads
+# configure input boost settings
+echo "0:1804800" > /sys/devices/system/cpu/cpu_boost/input_boost_freq
+echo 120 > /sys/devices/system/cpu/cpu_boost/input_boost_ms
 
-# configure bus-dcvs
+# Enable bus-dcvs
 for device in /sys/devices/platform/soc
 do
-	for cpubw in $device/*cpu-cpu-llcc-bw/devfreq/*cpu-cpu-llcc-bw
+	for cpubw in $device/*cpu-cpu-ddr-bw/devfreq/*cpu-cpu-ddr-bw
 	do
 		cat $cpubw/available_frequencies | cut -d " " -f 1 > $cpubw/min_freq
-		echo "4577 7110 9155 12298 14236 15258" > $cpubw/bw_hwmon/mbps_zones
+		echo "bw_hwmon" > $cpubw/governor
+		echo "1144 1720 2086 2929 3879 5931 6881 8137" > $cpubw/bw_hwmon/mbps_zones
 		echo 4 > $cpubw/bw_hwmon/sample_ms
-		echo 80 > $cpubw/bw_hwmon/io_percent
+		echo 68 > $cpubw/bw_hwmon/io_percent
 		echo 20 > $cpubw/bw_hwmon/hist_memory
-		echo 10 > $cpubw/bw_hwmon/hyst_length
-		echo 30 > $cpubw/bw_hwmon/down_thres
+		echo 0 > $cpubw/bw_hwmon/hyst_length
+		echo 80 > $cpubw/bw_hwmon/down_thres
 		echo 0 > $cpubw/bw_hwmon/guard_band_mbps
 		echo 250 > $cpubw/bw_hwmon/up_scale
 		echo 1600 > $cpubw/bw_hwmon/idle_mbps
-		echo 12298 > $cpubw/max_freq
 		echo 40 > $cpubw/polling_interval
 	done
 
-	for llccbw in $device/*cpu-llcc-ddr-bw/devfreq/*cpu-llcc-ddr-bw
+	# configure compute settings for silver latfloor
+	for latfloor in $device/*cpu0-cpu*latfloor/devfreq/*cpu0-cpu*latfloor
 	do
-		cat $llccbw/available_frequencies | cut -d " " -f 1 > $llccbw/min_freq
-		if [ ${ddr_type:4:2} == $ddr_type4 ]; then
-			echo "1720 2086 2929 3879 5931 6515 8136" > $llccbw/bw_hwmon/mbps_zones
-		elif [ ${ddr_type:4:2} == $ddr_type5 ]; then
-			echo "1720 2086 2929 3879 6515 7980 12191" > $llccbw/bw_hwmon/mbps_zones
-		fi
-		echo 4 > $llccbw/bw_hwmon/sample_ms
-		echo 80 > $llccbw/bw_hwmon/io_percent
-		echo 20 > $llccbw/bw_hwmon/hist_memory
-		echo 10 > $llccbw/bw_hwmon/hyst_length
-		echo 30 > $llccbw/bw_hwmon/down_thres
-		echo 0 > $llccbw/bw_hwmon/guard_band_mbps
-		echo 250 > $llccbw/bw_hwmon/up_scale
-		echo 1600 > $llccbw/bw_hwmon/idle_mbps
-		echo 6515 > $llccbw/max_freq
-		echo 40 > $llccbw/polling_interval
+		cat $latfloor/available_frequencies | cut -d " " -f 1 > $latfloor/min_freq
+		echo 8 > $latfloor/polling_interval
 	done
 
-	for l3bw in $device/*snoop-l3-bw/devfreq/*snoop-l3-bw
+	# configure compute settings for gold latfloor
+	for latfloor in $device/*cpu6-cpu*latfloor/devfreq/*cpu6-cpu*latfloor
 	do
-		cat $l3bw/available_frequencies | cut -d " " -f 1 > $l3bw/min_freq
-		echo 4 > $l3bw/bw_hwmon/sample_ms
-		echo 10 > $l3bw/bw_hwmon/io_percent
-		echo 20 > $l3bw/bw_hwmon/hist_memory
-		echo 10 > $l3bw/bw_hwmon/hyst_length
-		echo 0 > $l3bw/bw_hwmon/down_thres
-		echo 0 > $l3bw/bw_hwmon/guard_band_mbps
-		echo 0 > $l3bw/bw_hwmon/up_scale
-		echo 1600 > $l3bw/bw_hwmon/idle_mbps
-		echo 9155 > $l3bw/max_freq
-		echo 40 > $l3bw/polling_interval
+		cat $latfloor/available_frequencies | cut -d " " -f 1 > $latfloor/min_freq
+		echo 8 > $latfloor/polling_interval
 	done
 
-	# configure mem_latency settings for LLCC and DDR scaling and qoslat
+	# configure mem_latency settings for DDR scaling
 	for memlat in $device/*lat/devfreq/*lat
 	do
 		cat $memlat/available_frequencies | cut -d " " -f 1 > $memlat/min_freq
@@ -493,56 +407,28 @@ do
 		echo 400 > $memlat/mem_latency/ratio_ceil
 	done
 
-	# configure compute settings for gold latfloor
-	for latfloor in $device/*cpu4-cpu*latfloor/devfreq/*cpu4-cpu*latfloor
-	do
-		cat $latfloor/available_frequencies | cut -d " " -f 1 > $latfloor/min_freq
-		echo 8 > $latfloor/polling_interval
-	done
-
-	# configure mem_latency settings for prime latfloor
-	for latfloor in $device/*cpu7-cpu*latfloor/devfreq/*cpu7-cpu*latfloor
-	do
-		cat $latfloor/available_frequencies | cut -d " " -f 1 > $latfloor/min_freq
-		echo 8 > $latfloor/polling_interval
-		echo 25000 > $latfloor/mem_latency/ratio_ceil
-	done
-
-	# CPU4 L3 ratio ceil
-	for l3gold in $device/*cpu4-cpu-l3-lat/devfreq/*cpu4-cpu-l3-lat
-	do
-		echo 4000 > $l3gold/mem_latency/ratio_ceil
-	done
-
-	# CPU5 L3 ratio ceil
-	for l3gold in $device/*cpu5-cpu-l3-lat/devfreq/*cpu5-cpu-l3-lat
-	do
-		echo 4000 > $l3gold/mem_latency/ratio_ceil
-	done
-
-	# CPU6 L3 ratio ceil
+	#Gold CPU6 L3 ratio ceil
 	for l3gold in $device/*cpu6-cpu-l3-lat/devfreq/*cpu6-cpu-l3-lat
 	do
 		echo 4000 > $l3gold/mem_latency/ratio_ceil
+		echo 25000 > $l3gold/mem_latency/wb_filter_ratio
+		echo 60 > $l3gold/mem_latency/wb_pct_thres
 	done
 
-	# prime L3 ratio ceil
-	for l3prime in $device/*cpu7-cpu-l3-lat/devfreq/*cpu7-cpu-l3-lat
+	#Gold CPU7 L3 ratio ceil
+	for l3gold in $device/*cpu7-cpu-l3-lat/devfreq/*cpu7-cpu-l3-lat
 	do
-	    echo 20000 > $l3prime/mem_latency/ratio_ceil
+		echo 4000 > $l3gold/mem_latency/ratio_ceil
+		echo 25000 > $l3gold/mem_latency/wb_filter_ratio
+		echo 60 > $l3gold/mem_latency/wb_pct_thres
 	done
 
-	# qoslat ratio ceil
-	for qoslat in $device/*qoslat/devfreq/*qoslat
-	do
-	    echo 50 > $qoslat/mem_latency/ratio_ceil
-	done
 done
+
 echo N > /sys/module/lpm_levels/parameters/sleep_disabled
-echo deep > /sys/power/mem_sleep
-# Enable fsc.
-echo 1 > /sys/module/fsc/parameters/enable
+
 configure_memory_parameters
+
 # bin.zhong@ASTI, 2019/10/12, add for memplus
 memplus_post_config=1
 # huangwen.chen@OPTI, 2020/07/10, excute on first boot.
@@ -551,41 +437,13 @@ if [ $postboot_running != 3 ];then
     configure_memplus_parameters
 fi
 
-# Let kernel know our image version/variant/crm_version
-if [ -f /sys/devices/soc0/select_image ]; then
-	image_version="10:"
-	image_version+=`getprop ro.build.id`
-	image_version+=":"
-	image_version+=`getprop ro.build.version.incremental`
-	image_variant=`getprop ro.product.name`
-	image_variant+="-"
-	image_variant+=`getprop ro.build.type`
-	oem_version=`getprop ro.build.version.codename`
-	echo 10 > /sys/devices/soc0/select_image
-	echo $image_version > /sys/devices/soc0/image_version
-	echo $image_variant > /sys/devices/soc0/image_variant
-	echo $oem_version > /sys/devices/soc0/image_crm_version
-fi
-
-# Change console log level as per console config property
-console_config=`getprop persist.console.silent.config`
-case "$console_config" in
-	"1")
-		echo "Enable console config to $console_config"
-		echo 0 > /proc/sys/kernel/printk
-	;;
-	*)
-		echo "Enable console config to $console_config"
-	;;
-esac
-
 setprop vendor.post_boot.parsed 1
 
-# UFS add component info
-UFS_PN=`cat /sys/devices/platform/soc/1d84000.ufshc/string_descriptors/product_name`
-UFS_VENDOR=`cat /sys/devices/platform/soc/1d84000.ufshc/string_descriptors/manufacturer_name`
-UFS_VERSION=`cat /sys/devices/platform/soc/1d84000.ufshc/string_descriptors/product_revision`
+ # UFS add component info
+UFS_PN=`cat /sys/devices/platform/soc/4804000.ufshc/string_descriptors/product_name`
+UFS_VENDOR=`cat /sys/devices/platform/soc/4804000.ufshc/string_descriptors/manufacturer_name`
+UFS_VERSION=`cat /sys/devices/platform/soc/4804000.ufshc/string_descriptors/product_revision`
 UFS_INFO="UFS "`echo ${UFS_PN} | tr -d "\r"`" "`echo ${UFS_VENDOR} | tr -d "\r"`" "`echo ${UFS_VERSION} | tr -d "\r"`
 echo ${UFS_INFO}> /sys/project_info/add_component
 #liochen@SYSTEM, 2020/11/02, Add for enable ufs performance
-echo 0 > /sys/class/scsi_host/host0/../../../clkscale_enable
+#echo 0 > /sys/class/scsi_host/host0/../../../clkscale_enable

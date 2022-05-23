@@ -630,8 +630,8 @@ function configure_zram_parameters() {
             echo 0 > /sys/kernel/slab/zspage/store_user
         fi
 
-        mkswap /dev/block/zram0
-        swapon /dev/block/zram0 -p 32758
+        #mkswap /dev/block/zram0
+        #swapon /dev/block/zram0 -p 32758
     fi
 }
 
@@ -3929,7 +3929,7 @@ case "$target" in
 
         # Scuba perf/power tunings
         case "$soc_id" in
-             "441" )
+             "441" | "473" | "474" )
 
             # Quad-core device. disable core_ctl
             echo 0 > /sys/devices/system/cpu/cpu0/core_ctl/enable
@@ -5781,18 +5781,6 @@ case "$console_config" in
         echo "Enable console config to $console_config"
         ;;
 esac
-
-##qcom arg relese.
-#echo 80 > /sys/devices/system/cpu/cpu7/core_ctl/busy_up_thres
-#echo 50 > /sys/devices/system/cpu/cpu7/core_ctl/busy_down_thres
-#echo 90 99 > /proc/sys/kernel/sched_upmigrate
-#echo 80 90 > /proc/sys/kernel/sched_downmigrate
-#echo 0 > /sys/devices/system/cpu/cpu7/cpufreq/schedutil/pl
-#echo 1420800 > /sys/devices/system/cpu/cpufreq/policy7/schedutil/hispeed_freq
-##echo -10 > /sys/devices/system/cpu/cpu4/sched_load_boost
-##echo -10 > /sys/devices/system/cpu/cpu5/sched_load_boost
-##echo -10 > /sys/devices/system/cpu/cpu6/sched_load_boost
-#echo -19 > /sys/devices/system/cpu/cpu7/sched_load_boost
 
 # Parse misc partition path and set property
 misc_link=$(ls -l /dev/block/bootdevice/by-name/misc)

@@ -222,7 +222,7 @@ PRODUCT_PACKAGES += \
 
 # Common init scripts
 PRODUCT_PACKAGES += \
-    charger_fw_fstab.qti \
+    charger_fstab.qti \
     fstab.qcom \
     ftm_power_config.sh \
     init.class_main.sh \
@@ -232,7 +232,6 @@ PRODUCT_PACKAGES += \
     init.oem.rc \
     init.oem_ftm.rc \
     init.oem_rf.rc \
-    init.oplus_chg.sh \
     init.qcom.class_core.sh \
     init.qcom.early_boot.sh \
     init.qcom.factory.rc \
@@ -247,6 +246,8 @@ PRODUCT_PACKAGES += \
     init.qti.kernel.sh \
     init.qti.qcv.rc \
     init.qti.qcv.sh \
+    init.stnfc.rc \
+    init.stnfc.sh \
     init.recovery.qcom.rc \
     init.target.rc \
     init.uicc.rc \
