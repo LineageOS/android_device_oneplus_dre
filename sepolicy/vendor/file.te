@@ -12,7 +12,6 @@ type proc_watermark_boost_factor, fs_type, proc_type;
 
 # sysfs
 type sysfs_dbg, fs_type, sysfs_type;
-type sysfs_fod, fs_type, sysfs_type;
 type sysfs_fsc, fs_type, sysfs_type;
 type sysfs_fuse, fs_type, sysfs_type;
 type sysfs_memplus, fs_type, sysfs_type;
