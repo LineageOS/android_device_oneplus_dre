@@ -666,7 +666,7 @@ vendor/bin/feature_enabler_client
 vendor/etc/init/feature_enabler_client.rc
 
 # Fingerprint
-vendor/lib64/hw/goodix.3626.holi.so
+vendor/lib64/hw/goodix.3626.holi.so:vendor/lib64/hw/fingerprint.qcom.so
 vendor/lib64/fp_hal_extension.so
 vendor/lib64/libgf_ca.so
 vendor/lib64/libgf_hal.so

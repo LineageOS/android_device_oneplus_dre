@@ -15,7 +15,7 @@
         </interface>
     </hal>
     <hal format="hidl" optional="true">
-        <name>vendor.goodix.hardware.biometrics.fingerprint</name>
+        <name>vendor.goodix3626.hardware.biometrics.fingerprint</name>
         <version>2.1</version>
         <interface>
             <name>IGoodixFingerprintDaemon</name>
