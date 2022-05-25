@@ -8,17 +8,16 @@ persist.audio.fluence.voicecomm=true
 persist.vendor.audio.ambisonic.auto.profile=false
 persist.vendor.audio.ambisonic.capture=false
 persist.vendor.audio.apptype.multirec.enabled=false
-persist.vendor.audio.avs.afe_api_version=9
+persist.vendor.audio.avs.afe_api_version=2
 persist.vendor.audio.bcl.enabled=false
+persist.vendor.audio.fluence.audiorec=true
 persist.vendor.audio.fluence.speaker=true
 persist.vendor.audio.fluence.tmic.enabled=false
 persist.vendor.audio.fluence.voicecall=true
 persist.vendor.audio.fluence.voicerec=true
-persist.vendor.audio.ha_proxy.enabled=true
+persist.vendor.audio.ha_proxy.enabled=false
 persist.vendor.audio.ras.enabled=false
-persist.vendor.audio.speaker.prot.enable=false
-persist.vendor.audio.spv4.enable=false
-persist.vendor.audio.vbat.enabled=false
+persist.vendor.audio.spv3.enable=true
 persist.vendor.audio.voicecall.speaker.stereo=true
 persist.vendor.audio_hal.dsp_bit_width_enforce_mode=24
 ro.audio.monitorRotation=true
@@ -62,7 +61,7 @@ vendor.audio.feature.power_mode.enable=true
 vendor.audio.feature.ras.enable=true
 vendor.audio.feature.record_play_concurency.enable=false
 vendor.audio.feature.snd_mon.enable=true
-vendor.audio.feature.spkr_prot.enable=false
+vendor.audio.feature.spkr_prot.enable=true
 vendor.audio.feature.src_trkn.enable=true
 vendor.audio.feature.ssrec.enable=true
 vendor.audio.feature.usb_offload.enable=true
@@ -93,7 +92,7 @@ vendor.audio_hal.period_size=192
 vendor.voice.path.for.pcm.voip=true
 
 # Bluetooth
-persist.bluetooth.a2dp_offload.cap=sbc-aac-aptx-aptxhd-ldac-lc3
+persist.bluetooth.a2dp_offload.cap=sbc-aac-aptx-aptxhd-ldac
 persist.bluetooth.a2dp_offload.disabled=false
 persist.sys.fflag.override.settings_bluetooth_hearing_aid=true
 persist.vendor.bt.a2dp_offload_cap=sbc-aptx-aptxtws-aptxhd-aac-ldac
@@ -101,23 +100,20 @@ persist.vendor.bt.aac_frm_ctl.enabled=true
 persist.vendor.bt.aac_vbr_frm_ctl.enabled=true
 persist.vendor.oneplus.bt.asd.chain=0
 persist.vendor.oneplus.bt.asd.firmware=false
-persist.vendor.qcom.bluetooth.a2dp_mcast_test.enabled=false
-persist.vendor.qcom.bluetooth.a2dp_offload_cap=sbc-aptx-aptxtws-aptxhd-aac-ldac-aptxadaptiver2
-persist.vendor.qcom.bluetooth.aac_frm_ctl.enabled=true
+persist.vendor.qcom.bluetooth.a2dp_offload_cap=sbc-aptx-aptxtws-aptxhd-aac-ldac
 persist.vendor.qcom.bluetooth.aac_vbr_ctl.enabled=true
 persist.vendor.qcom.bluetooth.enable.splita2dp=true
 persist.vendor.qcom.bluetooth.scram.enabled=false
-persist.vendor.qcom.bluetooth.soc=hastings
 persist.vendor.qcom.bluetooth.twsp_state.enabled=false
 ro.bluetooth.a2dp_offload.supported=true
 ro.vendor.bluetooth.wipower=false
 vendor.qcom.bluetooth.soc=hastings
 
 # Camera
-persist.vendor.camera.privapp.list=com.oneplus.camera,com.oem.autotest,com.oneplus.factorymode
+persist.vendor.camera.privapp.list=com.oneplus.factorymode,com.oneplus.camera,com.oem.autotest,com.oneplus.healthcheck
 vendor.arcsoft.sn_isHardCopy=0
 vendor.camera.algo.jpeghwencode=1
-vendor.camera.aux.packagelist=com.oem.autotest,com.oneplus.factorymode,com.oneplus.camera,com.oneplus.healthcheck
+vendor.camera.aux.packagelist=com.oneplus.factorymode,com.oplus.camera,com.oem.autotest,com.oneplus.healthcheck
 
 # Chipset
 ro.soc.manufacturer=Qualcomm
@@ -141,6 +137,7 @@ vendor.display.enable_async_powermode=0
 vendor.display.enable_early_wakeup=1
 vendor.display.enable_optimize_refresh=1
 vendor.display.enable_posted_start_dyn=1
+vendor.display.secure_preview_buffer_format=420_sp
 vendor.display.use_layer_ext=1
 vendor.display.use_smooth_motion=1
 
@@ -170,11 +167,12 @@ debug.sf.latch_unsignaled=1
 persist.demo.hdmirotationlock=false
 persist.sys.sf.color_mode=0
 persist.sys.sf.color_saturation=1.0
-persist.sys.sf.native_mode=0
 ro.hardware.egl=adreno
 ro.hardware.vulkan=adreno
 ro.opengles.version=196610
 vendor.gralloc.disable_ubwc=0
+vendor.gralloc.secure_preview_buffer_format=420_sp
+vendor.gralloc.secure_preview_only=1
 
 # Incremental FS
 ro.incremental.enable=true
@@ -220,8 +218,12 @@ persist.vendor.radio.uicc_se_enabled=true
 ro.com.android.dataroaming=false
 
 # Sensors
-persist.vendor.sensors.allow_non_default_discovery=true
-persist.vendor.sensors.on_change_sample_period=true
+persist.vendor.sensors.debug.ssc_qmi_debug=true
+persist.vendor.sensors.enable.mag_filter=true
+persist.vendor.sensors.hal_trigger_ssr=false
+persist.vendor.sensors.enable.rt_task=false
+persist.vendor.sensors.support_direct_channel=false
+persist.vendor.sensors.enable.bypass_worker=true
 persist.vendor.sensors.sync_request=true
 
 # Shutdown
