@@ -682,7 +682,4 @@
         </interface>
         <fqname>@1.0::IEidDevice/default</fqname>
     </hal>
-    <sepolicy>
-        <version>30.0</version>
-    </sepolicy>
 </manifest>
