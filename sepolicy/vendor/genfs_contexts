@@ -1,4 +1,5 @@
 # procfs
+genfscon proc /qcom_flash                           u:object_r:proc_flash_light_file:s0
 genfscon proc /touchpanel                           u:object_r:proc_touchpanel:s0
 
 # sysfs
