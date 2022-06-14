@@ -478,5 +478,4 @@
             <instance>imsrtpservice</instance>
         </interface>
     </hal>
-    <kernel target-level="5"/>
 </manifest>
