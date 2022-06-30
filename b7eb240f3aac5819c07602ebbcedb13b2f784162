@@ -16,6 +16,24 @@
       "message": "Uncertain if this is necessary, will determine if it is later.",
       "revId": "b7eb240f3aac5819c07602ebbcedb13b2f784162",
       "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a97e0092_2b07f66e",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 18745
+      },
+      "writtenOn": "2022-06-30T14:19:47Z",
+      "side": 1,
+      "message": "The T-Mobile variant does have CDMA support, even though T-Mobile has not used CDMA at any point in its history (acquiring Sprint does not count).",
+      "parentUuid": "c40e5a23_311701c6",
+      "revId": "b7eb240f3aac5819c07602ebbcedb13b2f784162",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
     }
   ]
 }
