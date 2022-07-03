@@ -7,10 +7,6 @@ persist.vendor.audio.fluence.speaker=true
 persist.vendor.audio.fluence.voicecall=true
 persist.vendor.audio.fluence.voicecomm=true
 persist.vendor.audio.spv3.enable=true
-persist.vendor.audio_hal.dsp_bit_width_enforce_mode=24
-ro.config.media_vol_steps=30
-ro.config.vc_call_vol_steps=9
-ro.vendor.audio.sdk.fluencetype=none
 ro.vendor.audio.sdk.ssr=false
 vendor.audio.adm.buffering.ms=2
 vendor.audio.enable.mirrorlink=false
@@ -62,7 +58,6 @@ vendor.voice.path.for.pcm.voip=true
 persist.bluetooth.a2dp_offload.cap=sbc-aac-aptx-aptxhd-ldac
 persist.bluetooth.a2dp_offload.disabled=false
 persist.sys.fflag.override.settings_bluetooth_hearing_aid=true
-persist.vendor.bluetooth.modem_nv_support=true
 persist.vendor.bt.aac_frm_ctl.enabled=true
 persist.vendor.bt.aac_vbr_frm_ctl.enabled=true
 persist.vendor.qcom.bluetooth.a2dp_offload_cap=sbc-aptx-aptxtws-aptxhd-aac-ldac
@@ -91,7 +86,6 @@ vendor.display.enable_camera_smooth=1
 vendor.display.enable_async_powermode=0
 vendor.display.enable_early_wakeup=1
 vendor.display.enable_optimize_refresh=1
-vendor.display.primary_mixer_stages=9
 
 # DRM
 drm.service.enabled=true
@@ -136,20 +130,14 @@ ro.incremental.enable=yes
 # Media
 debug.stagefright.ccodec=4
 debug.stagefright.omx_default_rank=0
-vendor.media.vpp.enable=0
-vendor.media.vpp.osie.enable=0
-vendor.media.vpp.sr.enable=0
 
 # Perf
 ro.vendor.extension_library=libqti-perfd-client.so
 
 # Radio
 persist.vendor.radio.custom_ecc=1
-persist.vendor.radio.force_on_dc=true
-persist.vendor.radio.poweron_opt=1
 persist.vendor.radio.procedure_bytes=SKIP
 persist.vendor.radio.rat_on=combine
-persist.vendor.radio.stack_id_1=1
 
 # Sensors
 persist.vendor.sensors.debug.ssc_qmi_debug=true
