@@ -435,7 +435,7 @@ vendor/lib64/libVDSuperPhotoAPI.so
 vendor/lib64/libVDUpScale.so
 vendor/lib64/vendor.oneplus.hardware.camera@1.0.so
 vendor/lib64/vendor.oneplus.hardware.CameraMDMHIDL@1.0.so
-vendor/lib64/vendor.qti.hardware.camera.postproc@1.0-service-impl.so|cc424bea56f93d508464ec9f0a137c5b6ff36cce
+vendor/lib64/vendor.qti.hardware.camera.postproc@1.0-service-impl.so
 
 # CDSP
 vendor/bin/cdsprpcd
