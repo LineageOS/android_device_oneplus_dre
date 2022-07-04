@@ -1485,6 +1485,7 @@ vendor/lib64/libwvhidl.so
 
 # WiFi
 vendor/bin/cnss-daemon
+vendor/bin/load_wlan_driver
 
 # WiFi Display
 -system/framework/WfdCommon.jar
