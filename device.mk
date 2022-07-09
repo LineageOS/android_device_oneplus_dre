@@ -37,7 +37,6 @@ PRODUCT_PACKAGES += \
     FrameworksResTarget \
     OPlusFrameworksResCommon \
     OPlusSettingsResCommon \
-    OPlusWifiResCommon \
     WifiResTarget
 
 # AAPT
