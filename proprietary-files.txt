@@ -1483,6 +1483,7 @@ vendor/lib64/libwvhidl.so
 
 # WiFi
 vendor/bin/cnss-daemon
+vendor/etc/wifi/WCNSS_qcom_cfg.ini
 
 # WiFi Display
 -system/framework/WfdCommon.jar
