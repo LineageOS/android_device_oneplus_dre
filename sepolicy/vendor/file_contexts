@@ -1,6 +1,6 @@
 # Binaries
 /(vendor|system/vendor)/bin/opf-service                u:object_r:opf_exec:s0
-/(vendor|system/vendor)/bin/wifi-mac-generator         u:object_r:wifi-mac-generator_exec:s0
+/(vendor|system/vendor)/bin/wifi-mac-generator-dre     u:object_r:wifi-mac-generator_exec:s0
 
 # Block devices
 /dev/block/platform/soc/4804000\.ufshc/by-name/fw_ufs1_[ab]          u:object_r:vendor_custom_ab_block_device:s0
