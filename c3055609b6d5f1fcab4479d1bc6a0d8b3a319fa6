@@ -69,6 +69,24 @@
       "parentUuid": "54a74135_ab401566",
       "revId": "c3055609b6d5f1fcab4479d1bc6a0d8b3a319fa6",
       "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "aa2d0ddd_7c19c557",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 18745
+      },
+      "writtenOn": "2022-07-16T02:08:14Z",
+      "side": 1,
+      "message": "I\u0027ll port these changes and see if they work. That means I cannot use wifi-mac-generator, right?",
+      "parentUuid": "bb34d732_f5288a17",
+      "revId": "c3055609b6d5f1fcab4479d1bc6a0d8b3a319fa6",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
     }
   ]
 }
