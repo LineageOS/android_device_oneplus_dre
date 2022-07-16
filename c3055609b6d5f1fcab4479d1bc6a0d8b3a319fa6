@@ -51,6 +51,24 @@
       "parentUuid": "61ffa477_4add9202",
       "revId": "c3055609b6d5f1fcab4479d1bc6a0d8b3a319fa6",
       "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "bb34d732_f5288a17",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 29415
+      },
+      "writtenOn": "2022-07-16T01:28:33Z",
+      "side": 1,
+      "message": "No, it\u0027s the changes OnePlus made to kernel sources in the initial import guarded with \"OPLUS_FEATURE_WIFI_MAC\": https://github.com/LineageOS/android_kernel_oneplus_sm8350/commit/b4c53f3e479027c40e9a9f33a85952a0725328b0#diff-a8bb56ae9996d0c274b72a94fd43106220bf93a19cd1f6deab33700f2a8eceea\n\nYou\u0027ll also need https://github.com/LineageOS/android_kernel_oneplus_sm8350/commit/2cfd54409548c1b99a05f803cc6901893a6ec1ab",
+      "parentUuid": "54a74135_ab401566",
+      "revId": "c3055609b6d5f1fcab4479d1bc6a0d8b3a319fa6",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
     }
   ]
 }
