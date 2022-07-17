@@ -926,8 +926,6 @@ vendor/bin/STFlashTool
 vendor/etc/libese-nxp.conf
 vendor/etc/libnfc-hal-st.conf
 vendor/etc/libnfc-nci.conf
-vendor/lib64/libchrome.so
-vendor/lib64/nfc_nci.st21nfc.st.so
 
 # NFC configs
 vendor/etc/libnfc-mtp-SN100.conf
