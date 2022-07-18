@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b0f3570e_cf42a0ce",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 18745
+      },
+      "writtenOn": "2022-07-18T16:08:22Z",
+      "side": 1,
+      "message": "Will be looked at during OOS 12 bringup. For now, do not merge.",
+      "revId": "0d5ac9994f18aa194a9dc1ee5fede11b5ff314ea",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
+    }
+  ]
+}
