@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a70967f8_43013486",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 18745
+      },
+      "writtenOn": "2022-07-18T03:06:10Z",
+      "side": 1,
+      "message": "Although loading from QMI DMS is a better solution, the N200 lacks the supported hardware to use it. As such, we will have to stick with loading from OEM NV (which is what is happening here).",
+      "revId": "838c52680583c6413d6e375884dbb35157a4b447",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
+    }
+  ]
+}
