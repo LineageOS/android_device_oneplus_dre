@@ -61,6 +61,9 @@ persist.vendor.qcom.bluetooth.a2dp_offload_cap=sbc-aptx-aptxtws-aptxhd-aac-ldac
 persist.vendor.qcom.bluetooth.aac_vbr_ctl.enabled=false
 ro.bluetooth.a2dp_offload.supported=true
 
+# Camera
+vendor.camera.aux.packageexcludelist=org.telegram.messenger,org.thunderdog.challegram
+
 # Chipset
 ro.soc.manufacturer=Qualcomm
 ro.soc.model=SM4350
