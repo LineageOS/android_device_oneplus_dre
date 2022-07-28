@@ -661,6 +661,12 @@ vendor/lib64/hw/vendor.qti.esepowermanager@1.1-impl.so
 vendor/lib64/vendor.qti.esepowermanager@1.0.so
 vendor/lib64/vendor.qti.esepowermanager@1.1.so
 
+# Face unlock
+vendor/bin/hw/vendor.oneplus.faceunlock.hal@1.0-service
+vendor/etc/init/vendor.oneplus.faceunlock.hal@1.0-service.rc
+vendor/lib64/libstfaceunlockocl.so
+vendor/lib64/vendor.oneplus.faceunlock.hal@1.0.so
+
 # Feature enabler client
 vendor/bin/feature_enabler_client
 vendor/etc/init/feature_enabler_client.rc

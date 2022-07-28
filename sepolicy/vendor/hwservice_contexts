@@ -3,6 +3,7 @@ vendor.goodix3626.hardware.biometrics.fingerprint::IGoodixFingerprintDaemonExt  
 vendor.goodix3626.hardware.biometrics.fingerprint::IGoodixFingerprintDaemonHbd  u:object_r:hal_fingerprint_hwservice:s0
 vendor.goodix3626.hardware.biometrics.fingerprint::IGoodixFingerprintDaemonFido u:object_r:hal_fingerprint_hwservice:s0
 vendor.oneplus.camera.CameraHIDL::IOnePlusCameraProvider                   u:object_r:hal_cameraHIDL_hwservice:s0
+vendor.oneplus.faceunlock.hal::IFaceUnlockNativeService                    u:object_r:hal_face_hwservice:s0
 vendor.oneplus.fingerprint.extension::IVendorFingerprintExtensions         u:object_r:hal_fingerprint_hwservice:s0
 vendor.oneplus.hardware.camera::IOnePlusCameraProvider                     u:object_r:hal_cameraHIDL_hwservice:s0
 vendor.oneplus.hardware.CameraMDMHIDL::IOnePlusCameraMDM                   u:object_r:hal_cameraHIDL_hwservice:s0
