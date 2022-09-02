@@ -15,7 +15,7 @@
             <instance>default</instance>
         </interface>
     </hal>
-    <hal format="hidl" optional="false">
+    <hal format="hidl" optional="true">
         <name>vendor.oneplus.engnative.engineer</name>
         <version>1.0</version>
         <interface>
@@ -23,7 +23,7 @@
             <instance>default</instance>
         </interface>
     </hal>
-    <hal format="hidl" optional="false">
+    <hal format="hidl" optional="true">
         <name>vendor.oneplus.faceunlock.hal</name>
         <version>1.0</version>
         <interface>
