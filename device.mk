@@ -464,9 +464,17 @@ PRODUCT_PACKAGES += \
 PRODUCT_COPY_FILES += \
     vendor/qcom/opensource/vibrator/excluded-input-devices.xml:$(TARGET_COPY_OUT_VENDOR)/etc/excluded-input-devices.xml
 
+# VNDK
+PRODUCT_COPY_FILES += \
+    prebuilts/vndk/v30/arm/arch-arm-armv7-a-neon/shared/vndk-core/libui.so:$(TARGET_COPY_OUT_VENDOR)/lib/libui-v30.so
+
+PRODUCT_PACKAGES += \
+    android.hardware.common-V1-ndk_platform.vendor
+
 # Wi-Fi
 PRODUCT_PACKAGES += \
     android.hardware.wifi@1.0-service \
+    android.hardware.wifi.hostapd@1.0.vendor \
     hostapd \
     libwpa_client \
     libwifi-hal-ctrl \
