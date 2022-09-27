@@ -1253,7 +1253,6 @@ vendor/lib64/unnhal-acc-gpu.so
 vendor/lib64/unnhal-acc-hvx.so
 
 # NFC
-odm/etc/nfc/libnfc-hal-st.conf_20818:vendor/etc/libnfc-hal-st.conf
 odm/etc/nfc/libnfc-nci.conf_20818:vendor/etc/libnfc-nci.conf
 odm/etc/nfc/libnfc-st21h_conf.txt_20818:vendor/etc/libnfc-st21h_conf.txt
 odm/etc/nfc/nfc_conf_ref
