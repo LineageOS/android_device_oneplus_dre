@@ -22,6 +22,10 @@ $(call inherit-product, vendor/oneplus/dre/dre-vendor.mk)
 # Set product shipping level
 PRODUCT_SHIPPING_API_LEVEL := 30
 
+# Set board API level
+BOARD_SHIPPING_API_LEVEL := 30
+BOARD_API_LEVEL := 30
+
 # Overlays
 $(call inherit-product, hardware/oplus/overlay/qssi/qssi.mk)
 
