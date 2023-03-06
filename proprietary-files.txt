@@ -1344,7 +1344,7 @@ vendor/lib64/libprekill.so
 vendor/lib64/libsplh.so
 
 # Power-off alarm
-product/app/PowerOffAlarm/PowerOffAlarm.apk|b0e06d00af3ecf65284788169a5333c2f56a1823
+product/app/PowerOffAlarm/PowerOffAlarm.apk|78b8c1493b397ed7b3870dac7e646447cc5e0c1a 
 system_ext/framework/vendor.qti.hardware.alarm-V1.0-java.jar
 vendor/bin/hw/vendor.qti.hardware.alarm@1.0-service
 vendor/bin/power_off_alarm
