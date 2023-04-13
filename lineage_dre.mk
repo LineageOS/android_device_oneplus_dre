@@ -1,5 +1,5 @@
 #
-# Copyright (C) 2021-2022 The LineageOS Project
+# Copyright (C) 2021-2023 The LineageOS Project
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -33,8 +33,8 @@ PRODUCT_MODEL := DE2117
 PRODUCT_GMS_CLIENTID_BASE := android-oneplus
 
 PRODUCT_BUILD_PROP_OVERRIDES += \
-    PRIVATE_BUILD_DESC="OnePlusN200-user 12 SKQ1.210216.001 202212051721 release-keys" \
+    PRIVATE_BUILD_DESC="OnePlusN200-user 12 SKQ1.210216.001 R.202304041604 release-keys" \
     TARGET_DEVICE=OnePlusN200 \
     TARGET_PRODUCT=OnePlusN200
 
-BUILD_FINGERPRINT := OnePlus/OnePlusN200/OnePlusN200:12/SKQ1.210216.001/R.202212051721:user/release-keys
+BUILD_FINGERPRINT := OnePlus/OnePlusN200/OnePlusN200:12/SKQ1.210216.001/R.202304041604:user/release-keys
