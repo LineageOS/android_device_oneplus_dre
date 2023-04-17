@@ -1,4 +1,0 @@
-# Battery
-/sys/module/qpnp_smb5(/.*)?                                                           u:object_r:vendor_sysfs_battery_supply:s0
-/sys/devices/platform/soc/4c90000.i2c/i2c-1/1-006b/iio:device5/name                   u:object_r:vendor_sysfs_battery_supply:s0
-/sys/devices/platform/soc/4c90000.i2c/i2c-1/1-006b/power_supply/parallel/model_name   u:object_r:vendor_sysfs_battery_supply:s0
