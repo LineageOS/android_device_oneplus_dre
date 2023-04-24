@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "7eefed46_0bb22ef2",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 18745
+      },
+      "writtenOn": "2023-04-24T13:18:05Z",
+      "side": 1,
+      "message": "Build fingerprint is out-of-date",
+      "revId": "45bec30abf6aaf9408ef1f027db5e15a12ee3425",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
+    }
+  ]
+}
