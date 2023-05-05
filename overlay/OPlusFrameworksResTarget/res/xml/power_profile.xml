@@ -37,7 +37,7 @@
     <item name="modem.controller.voltage">800
     </item>
     <array name="cpu.clusters.cores">
-        <value>4</value>
+        <value>6</value>
         <value>2</value>
     </array>
     <array name="cpu.core_speeds.cluster0">
