@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "5331ab08_c466caf4",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 18745
+      },
+      "writtenOn": "2023-05-08T22:43:20Z",
+      "side": 1,
+      "message": "Pushing for now, until A2DP offload is fixed",
+      "revId": "493e5f418257d23efc1298d8c48e4f7c9421dce5",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
+    }
+  ]
+}
