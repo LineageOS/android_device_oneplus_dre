@@ -1130,6 +1130,7 @@ system_ext/priv-app/ims/ims.apk|f0d834acbc77e7830459e0246f5073e1b9ba8657
 
 # IMS
 vendor/bin/ims_rtp_daemon
+vendor/bin/imsdaemon
 vendor/etc/init/imsdaemon.rc
 vendor/etc/init/ims_rtp_daemon.rc
 vendor/etc/seccomp_policy/imsrtp.policy
