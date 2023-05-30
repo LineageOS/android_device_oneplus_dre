@@ -510,7 +510,6 @@ odm/etc/camera/eis_camera.vcfg
 odm/etc/camera/fb_default
 odm/etc/camera/fwk_config.json
 odm/etc/camera/gasryuv_1.2_wp.model
-odm/etc/camera/license_release_fdc.lic
 odm/etc/camera/model_fdc.data
 odm/etc/camera/settings_fdc.txt
 odm/lib/libc++_shared.so
