@@ -81,10 +81,6 @@ on fs
     mkdir /mnt/vendor/persist/wlan 0700 system system
     chmod 0700 /mnt/vendor/persist/wlan
 
-on post-fs
-    # set RLIMIT_MEMLOCK to 64MB
-    setrlimit 8 67108864 67108864
-
 on late-fs
     mount_all --late
 
