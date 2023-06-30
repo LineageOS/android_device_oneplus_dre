@@ -1,5 +1,5 @@
 ## All proprietary files from this list, unless pinned and noted otherwise,
-## are from OnePlus Nord N200 (DE2117_11.C.23).
+## are from OnePlus Nord N200 (DE2117_11.C.24).
 
 # ACDB
 odm/etc/acdbdata/Audio_Parameter_Version.txt
