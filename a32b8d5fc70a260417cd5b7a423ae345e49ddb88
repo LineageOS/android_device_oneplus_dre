@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "8d3fc6d4_2e95e67a",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 18745
+      },
+      "writtenOn": "2023-10-12T01:45:29Z",
+      "side": 1,
+      "message": "Wait for DE2118 11.C.25",
+      "revId": "a32b8d5fc70a260417cd5b7a423ae345e49ddb88",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
+    }
+  ]
+}
