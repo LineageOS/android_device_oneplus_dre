@@ -47,6 +47,36 @@
       "ResetOnInit": true
     },
     {
+      "Name": "UclampTAMin",
+      "Path": "/dev/cpuctl/top-app/cpu.uclamp.min",
+      "Values": [
+        "0",
+        "50",
+        "100"
+      ],
+      "DefaultIndex": 0,
+      "ResetOnInit": true
+    },
+    {
+      "Name": "UclampTALatency",
+      "Path": "/dev/cpuctl/top-app/cpu.uclamp.latency_sensitive",
+      "Values": [
+        "1",
+        "0"
+      ],
+      "ResetOnInit": true
+    },
+    {
+      "Name": "UclampFgMin",
+      "Path": "/dev/cpuctl/foreground/cpu.uclamp.min",
+      "Values": [
+        "0",
+        "100"
+      ],
+      "DefaultIndex": 0,
+      "ResetOnInit": true
+    },
+    {
       "Name": "GPUMaxFreq",
       "Path": "/sys/class/kgsl/kgsl-3d0/devfreq/max_freq",
       "Values": [
@@ -91,15 +121,6 @@
       "Values": [
         "10000",
         "80"
-      ],
-      "ResetOnInit": true
-    },
-    {
-      "Name": "TASchedtuneBoost",
-      "Path": "/dev/stune/top-app/schedtune.boost",
-      "Values": [
-        "50",
-        "10"
       ],
       "ResetOnInit": true
     },
@@ -165,15 +186,6 @@
       "Values": [
         "1497600000",
         "300000000"
-      ],
-      "ResetOnInit": true
-    },
-    {
-      "Name": "SchedBoost",
-      "Path": "/proc/sys/kernel/sched_boost",
-      "Values": [
-        "1",
-        "0"
       ],
       "ResetOnInit": true
     },
@@ -244,9 +256,15 @@
     },
     {
       "PowerHint": "INTERACTION",
-      "Node": "TASchedtuneBoost",
+      "Node": "UclampTAMin",
       "Duration": 0,
       "Value": "50"
+    },
+    {
+      "PowerHint": "INTERACTION",
+      "Node": "UclampTALatency",
+      "Duration": 0,
+      "Value": "1"
     },
     {
       "PowerHint": "INTERACTION",
@@ -274,12 +292,6 @@
     },
     {
       "PowerHint": "LAUNCH",
-      "Node": "SchedBoost",
-      "Duration": 5000,
-      "Value": "1"
-    },
-    {
-      "PowerHint": "LAUNCH",
       "Node": "CPUBigClusterMaxFreq",
       "Duration": 5000,
       "Value": "9999999"
@@ -295,6 +307,18 @@
       "Node": "CPULittleClusterMinFreq",
       "Duration": 5000,
       "Value": "9999999"
+    },
+    {
+      "PowerHint": "LAUNCH",
+      "Node": "UclampTAMin",
+      "Duration": 3000,
+      "Value": "50"
+    },
+    {
+      "PowerHint": "LAUNCH",
+      "Node": "UclampFgMin",
+      "Duration": 3000,
+      "Value": "100"
     },
     {
       "PowerHint": "LAUNCH",
