@@ -61,6 +61,15 @@ function blob_fixup() {
         system_ext/lib64/libwfdnative.so)
             sed -i "s/android.hidl.base@1.0.so/libhidlbase.so\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00/" "${2}"
             ;;
+        odm/etc/init/android.hardware.drm@1.3-service.widevine.rc)
+            sed -i "s|writepid /dev/cpuset/foreground/tasks|task_profiles ProcessCapacityHigh|g" "${2}"
+             ;;
+        vendor/etc/init/android.hardware.neuralnetworks@1.3-service-qti.rc)
+            sed -i "s|writepid /dev/stune/nnapi-hal/tasks|task_profiles NNApiHALPerformance|g" "${2}"
+             ;;
+        vendor/etc/init/vendor.qti.media.c2@1.0-service.rc)
+            sed -i "s|writepid /dev/cpuset/foreground/tasks|task_profiles ProcessCapacityHigh|g" "${2}"
+             ;;
         vendor/etc/libnfc-nci.conf)
             sed -i "s/NFC_DEBUG_ENABLED=1/NFC_DEBUG_ENABLED=0/" "${2}"
             ;;
