@@ -1219,6 +1219,7 @@ vendor/lib/liblistensoundmodel2.so
 vendor/lib/libmulawdec.so
 
 # Media
+odm/etc/media_profiles_V1_0.xml
 system_ext/lib/libmmosal.so
 system_ext/lib/libmmparser_lite.so
 system_ext/lib64/libmmosal.so
@@ -1227,6 +1228,16 @@ vendor/bin/init.qti.media.sh
 vendor/etc/init/init.qti.media.rc
 vendor/etc/init/vendor.qti.media.c2@1.0-service.rc
 vendor/etc/media_holi/video_system_specs.json
+vendor/etc/media_codecs.xml
+vendor/etc/media_codecs_holi.xml
+vendor/etc/media_codecs_holi_vendor.xml
+vendor/etc/media_codecs_performance.xml
+vendor/etc/media_codecs_performance_holi.xml
+vendor/etc/media_codecs_performance_holi_vendor.xml
+vendor/etc/media_codecs_vendor_audio.xml
+vendor/etc/media_profiles.xml
+vendor/etc/media_profiles_V1_0.xml
+vendor/etc/media_profiles_holi.xml
 vendor/etc/video_system_specs.json
 vendor/etc/seccomp_policy/codec2.vendor.base-arm.policy
 vendor/etc/seccomp_policy/codec2.vendor.ext-arm.policy
