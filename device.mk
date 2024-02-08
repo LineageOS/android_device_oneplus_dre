@@ -331,7 +331,8 @@ PRODUCT_PACKAGES += \
 
 # Perf
 PRODUCT_COPY_FILES += \
-    $(LOCAL_PATH)/configs/task_profiles.json:$(TARGET_COPY_OUT_VENDOR)/etc/task_profiles.json
+    $(LOCAL_PATH)/configs/task_profiles.json:$(TARGET_COPY_OUT_VENDOR)/etc/task_profiles.json \
+    vendor/qcom/opensource/power/config/holi/powerhint.xml:$(TARGET_COPY_OUT_VENDOR)/etc/powerhint.xml
 
 # Power
 PRODUCT_PACKAGES += \
