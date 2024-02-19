@@ -1,3 +1,6 @@
+# ALS
+vendor.sensors.als_correction.grabrect=996 1746 1124 1874
+
 # Audio
 aaudio.hw_burst_min_usec=2000
 aaudio.mmap_exclusive_policy=2
