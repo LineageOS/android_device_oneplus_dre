@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ecccc439_16c3e8cb",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 18745
+      },
+      "writtenOn": "2024-05-26T14:02:54Z",
+      "side": 1,
+      "message": "If DE2118 has received no update by May 31, this change will be merged.",
+      "revId": "a998c0b18179abf69f16888debf6e456b40b9c04",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
+    }
+  ]
+}
