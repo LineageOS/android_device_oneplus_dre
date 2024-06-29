@@ -87,6 +87,10 @@ function blob_fixup() {
             [ "$2" = "" ] && return 0
             sed -i "s/NFC_DEBUG_ENABLED=1/NFC_DEBUG_ENABLED=0/" "${2}"
             ;;
+        vendor/etc/media_codecs.xml|vendor/etc/media_codecs_lahaina.xml|vendor/etc/media_codecs_lahaina_vendor.xml|vendor/etc/media_codecs_yupik_v1.xml)
+            [ "$2" = "" ] && return 0
+            sed -Ei "/media_codecs_(google_audio|google_telephony|vendor_audio)/d" "${2}"
+            ;;
         vendor/lib64/hw/com.qti.chi.override.so)
             [ "$2" = "" ] && return 0
             grep -q libcamera_metadata_shim.so "${2}" || "${PATCHELF}" --add-needed libcamera_metadata_shim.so "${2}"
