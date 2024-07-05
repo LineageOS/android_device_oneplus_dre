@@ -148,10 +148,6 @@ vendor.gralloc.secure_preview_only=1
 # Incremental FS
 ro.incremental.enable=yes
 
-# Media
-debug.stagefright.ccodec=4
-debug.stagefright.omx_default_rank=0
-
 # Perf
 ro.vendor.extension_library=libqti-perfd-client.so
 
