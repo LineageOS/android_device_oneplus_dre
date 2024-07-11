@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "4c9b3b9e_e93d1d8d",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 13648
+      },
+      "writtenOn": "2024-07-11T17:08:31Z",
+      "side": 1,
+      "message": "You can now safely pick https://review.lineageos.org/q/I241105e01d85fea983b34846ca675666ac07541b, as https://review.lineageos.org/397051 is merged.",
+      "revId": "5e187ff92bbf838f967525178324155caad11a67",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
+    }
+  ]
+}
