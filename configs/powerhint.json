@@ -553,6 +553,12 @@
       "Node": "DoubleTapToWake",
       "Duration": 0,
       "Value": "1"
+    },
+    {
+      "PowerHint": "DISPLAY_INACTIVE",
+      "Node": "CPULittleClusterMinFreq",
+      "Duration": 0,
+      "Value": "300000"
     }
   ]
 }
