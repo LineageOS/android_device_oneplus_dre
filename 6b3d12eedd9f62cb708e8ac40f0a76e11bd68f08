@@ -16,6 +16,24 @@
       "message": "Does not seem to work as intended",
       "revId": "6b3d12eedd9f62cb708e8ac40f0a76e11bd68f08",
       "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "56f2ceec_f01b8861",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 19252
+      },
+      "writtenOn": "2024-07-16T02:26:40Z",
+      "side": 1,
+      "message": "Please check moto sm8550-common again. Some users needed ID 185 some needed 186 so it has been revamped to support both and I modified the sleep values too\n\nhttps://github.com/LineageOS/android_device_motorola_sm8550-common/blob/lineage-21/rootdir/system/bin/init.sim.restart.sh",
+      "parentUuid": "49c3c607_98bd07a0",
+      "revId": "6b3d12eedd9f62cb708e8ac40f0a76e11bd68f08",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
     }
   ]
 }
