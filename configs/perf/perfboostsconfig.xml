@@ -27,12 +27,12 @@
         <Config
             Id="0x00001081" Type="1" Enable="true" Timeout="2000" Target="holi"
             Resources="0x40C20000, 0x28, 0x40C1C000, 0x32, 0x40804000, 0xFFF, 0x40804100, 0xFFF,
-                       0x40800000, 1535, 0x40800100, 1478" />
+                       0x40800000, 0xFFF, 0x40800100, 0xFFF" />
 
         <Config
             Id="0x00001081" Type="1" Enable="true" Timeout="2000" Target="blair"
             Resources="0x40C20000, 0x28, 0x40C1C000, 0x32, 0x40804000, 0xFFF, 0x40804100, 0xFFF,
-                       0x40800000, 1516, 0x40800100, 1516" />
+                       0x40800000, 0xFFF, 0x40800100, 0xFFF" />
 
 
     <!--app lauch boost (disabling packing)-->
@@ -123,8 +123,8 @@
         <!-- CPUBOOST_MIN_FREQ LITTLE Core resource opcode, value-->
         <Config
             Id="0x00001083" Enable="true" Timeout="400" Target="holi"
-            Resources="0x40804000, 0xFFF, 0x40804100, 0xFFF, 0x40800000, 0x7F3,
-                       0x40800100, 0x70C" />
+            Resources="0x40804000, 0xFFF, 0x40804100, 0xFFF, 0x40800000, 0xFFF,
+                       0x40800100, 0xFFF" />
 
         <Config
             Id="0x00001083" Enable="true" Timeout="400" Target="blair"
@@ -509,13 +509,21 @@
     <!--Large Comp HInt -->
         <!-- CPU min freq resource opcode, value -->
         <!-- GPU MIN_FREQUENCY resource opcode,value -->
+        <!-- PID Affine opcode,value -->
         <Config
                 Id="0x00001097" Type="0" Enable="true" Timeout="9" Target="blair" Fps="120"
-                Resources="0x40800100, 1000, 0x42804000, 0" />
+                Resources="0x40800000, 1516, 0x42804000, 0, 0x42C20000, 1" />
 
         <Config
                 Id="0x00001097" Type="0" Enable="true" Timeout="7" Target="blair" Fps="144"
-                Resources="0x40800100, 1000, 0x42804000, 0" />
+                Resources="0x40800000, 1516, 0x42804000, 0, 0x42C20000, 1" />
+
+    <!--GPU boost -->
+        <!-- CPUBOOST_MAX_FREQ BIG Core resource opcode, value-->
+        <!-- GPU MAX_FREQUENCY resource opcode,value -->
+        <Config
+                Id="0x000011F0" Enable="true" Target="holi"
+                Resources="0x40804000, 1401, 0x40804100, 1190, 0x42810000, 355" />
 
     </PerfBoost>
 </BoostConfigs>
