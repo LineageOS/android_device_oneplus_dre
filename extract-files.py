@@ -102,8 +102,22 @@ blob_fixups: blob_fixups_user_type = {
         .regex_replace('FeatureType="8" Disable="false"', 'FeatureType="8" Disable="true"')
         .regex_replace('20121_v1_20201113', 'native')
         .regex_replace('SRGB', 'sRGB'),
+    'vendor/etc/perf/perfboostsconfig.xml': blob_fixup()
+        .regex_replace('0x40800000, 1535, 0x40800100, 1478', '0x40800000, 0xFFF, 0x40800100, 0xFFF')
+        .regex_replace('0x40800000, 1516, 0x40800100, 1516', '0x40800000, 0xFFF, 0x40800100, 0xFFF')
+        .regex_replace('0x7F3', '0xFFF')
+        .regex_replace('0x70C', '0xFFF')
+        .regex_replace('0x40800100, 1000, 0x42804000, 0', '0x40800000, 1516, 0x42804000, 0, 0x42C20000, 1')
+        .regex_replace('</PerfBoost>', '    <Config\n                Id="0x000011F0" Enable="true" Target="holi"\n                Resources="0x40804000, 1401, 0x40804100, 1190, 0x42810000, 355" />\n    </PerfBoost>'),
     'vendor/etc/perf/perfconfigstore.xml': blob_fixup()
-        .regex_replace('Name="ro.vendor.qti.sys.fw.bg_apps_limit" Value="16"', 'Name="ro.vendor.qti.sys.fw.bg_apps_limit" Value="38"'),
+        .regex_replace('Name="vendor.iop.enable_uxe" Value="1"', 'Name="vendor.iop.enable_uxe" Value="0"')
+        .regex_replace('Name="ro.vendor.qti.sys.fw.trim_empty_percent" Value="100"', 'Name="rro.vendor.qti.sys.fw.trim_empty_percent" Value="50"')
+        .regex_replace('Name="ro.vendor.qti.sys.fw.trim_cache_percent" Value="100"', 'Name="ro.vendor.qti.sys.fw.trim_cache_percent" Value="30"')
+        .regex_replace('Name="ro.vendor.qti.sys.fw.bg_apps_limit" Value="16"', 'Name="ro.vendor.qti.sys.fw.bg_apps_limit" Value="38"')
+        .regex_replace('Name="vendor.appcompact.enable_app_compact" Value="true"', 'Name="vendor.appcompact.enable_app_compact" Value="false"')
+        .regex_replace('Name="vendor.appcompact.full_compact_type"  Value="2"', 'Name="vendor.appcompact.full_compact_type"  Value="3"')
+        .regex_replace('Name="vendor.appcompact.some_compact_type"  Value="4"', 'Name="vendor.appcompact.some_compact_type"  Value="1"')
+        .regex_replace('Name="vendor.appcompact.compact_throttle_fullsome" Value="500"', 'Name="vendor.appcompact.compact_throttle_fullsome" Value="1000"'),
     'vendor/lib64/hw/com.qti.chi.override.so': blob_fixup()
         .add_needed('libcamera_metadata_shim.so'),
 }  # fmt: skip
