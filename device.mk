@@ -181,7 +181,8 @@ PRODUCT_PACKAGES += \
 
 # DRM
 PRODUCT_PACKAGES += \
-    android.hardware.drm-service.clearkey
+    android.hardware.drm-service.clearkey \
+    wvmkiller
 
 # fastbootd
 PRODUCT_PACKAGES += \
