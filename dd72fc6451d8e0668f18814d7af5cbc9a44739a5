@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "bb54f098_d7627368",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 18745
+      },
+      "writtenOn": "2024-08-20T16:19:12Z",
+      "side": 1,
+      "message": "DE2118 C32 update arrived, this can now be merged",
+      "revId": "dd72fc6451d8e0668f18814d7af5cbc9a44739a5",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
+    }
+  ]
+}
