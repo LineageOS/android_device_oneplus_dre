@@ -59,6 +59,10 @@ fi
 
 function blob_fixup() {
     case "${1}" in
+        odm/lib64/libwvhidl.so|odm/lib64/mediadrm/libwvdrmengine.so)
+            [ "$2" = "" ] && return 0
+            grep -q "libcrypto_shim.so" "${2}" || "${PATCHELF}" --add-needed "libcrypto_shim.so" "${2}"
+            ;;
         product/etc/sysconfig/com.android.hotwordenrollment.common.util.xml)
             [ "$2" = "" ] && return 0
             sed -i "s/\/my_product/\/product/" "${2}"
