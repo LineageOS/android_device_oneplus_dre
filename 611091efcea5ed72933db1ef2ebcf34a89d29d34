@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "aa94b19f_fb044048",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 33707
+      },
+      "writtenOn": "2024-10-17T05:36:32Z",
+      "side": 1,
+      "message": "I think there was a better fix for this, maybe you should cek it out \n\nhttps://github.com/BlissRoms-Devices/android_vendor_xiaomi_sky/commit/e53b34ccabf5ce68548a970af4cfdb2c8899c9f5",
+      "revId": "611091efcea5ed72933db1ef2ebcf34a89d29d34",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
+    }
+  ]
+}
