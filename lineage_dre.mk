@@ -33,8 +33,9 @@ PRODUCT_MODEL := DE2117
 PRODUCT_GMS_CLIENTID_BASE := android-oneplus
 
 PRODUCT_BUILD_PROP_OVERRIDES += \
-    PRIVATE_BUILD_DESC="OnePlusN200-user 12 SKQ1.210216.001 R.1927fbf_c3ef_1 release-keys" \
-    TARGET_DEVICE=OnePlusN200 \
-    TARGET_PRODUCT=OnePlusN200
-
-BUILD_FINGERPRINT := OnePlus/OnePlusN200/OnePlusN200:12/SKQ1.210216.001/R.1927fbf_c3ef_1:user/release-keys
+    BuildDesc="OnePlusN200-user 12 SKQ1.210216.001 R.1927fbf_c3ef_1 release-keys" \
+    BuildFingerprint=OnePlus/OnePlusN200/OnePlusN200:12/SKQ1.210216.001/R.1927fbf_c3ef_1:user/release-keys \
+    DeviceName=OnePlusN200 \
+    DeviceProduct=OnePlusN200 \
+    SystemDevice=OnePlusN200 \
+    SystemName=OnePlusN200
