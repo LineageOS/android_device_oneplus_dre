@@ -284,7 +284,7 @@ PRODUCT_PACKAGES += \
 
 # QMI
 PRODUCT_PACKAGES += \
-    libvndfwk_detect_jni.qti.vendor
+    libvndfwk_detect_jni.qti.vendor:64
 
 # Sensors
 PRODUCT_PACKAGES += \
