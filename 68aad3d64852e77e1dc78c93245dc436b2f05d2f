@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0f20933e_54c1587f",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 19979
+      },
+      "writtenOn": "2024-11-03T18:46:52Z",
+      "side": 1,
+      "message": "Just tested, was able to get a few stations in. Not a great signal, which could be my headphones or current location.",
+      "revId": "68aad3d64852e77e1dc78c93245dc436b2f05d2f",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
+    }
+  ]
+}
