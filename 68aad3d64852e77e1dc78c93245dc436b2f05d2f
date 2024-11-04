@@ -33,6 +33,29 @@
       "message": "This thing works. It\u0027s a miracle.\n\nHolding off on merge for now because there\u0027s a few other things I need to get to.",
       "revId": "68aad3d64852e77e1dc78c93245dc436b2f05d2f",
       "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "f590c9b0_8582f514",
+        "filename": "proprietary-files.txt",
+        "patchSetId": 1
+      },
+      "lineNbr": 984,
+      "author": {
+        "id": 4550
+      },
+      "writtenOn": "2024-11-04T20:09:27Z",
+      "side": 1,
+      "message": "Are you sure you need these?",
+      "range": {
+        "startLine": 982,
+        "startChar": 0,
+        "endLine": 984,
+        "endChar": 51
+      },
+      "revId": "68aad3d64852e77e1dc78c93245dc436b2f05d2f",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
     }
   ]
 }
