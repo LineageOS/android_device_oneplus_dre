@@ -37,6 +37,24 @@
     {
       "unresolved": false,
       "key": {
+        "uuid": "0082fb4c_a5226ff3",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 19979
+      },
+      "writtenOn": "2024-11-04T21:25:32Z",
+      "side": 1,
+      "message": "No rush, just saw the commit on gerrit for an older branch and decided to revisit",
+      "parentUuid": "44c3c5cd_59c82ca0",
+      "revId": "68aad3d64852e77e1dc78c93245dc436b2f05d2f",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
+    },
+    {
+      "unresolved": false,
+      "key": {
         "uuid": "f590c9b0_8582f514",
         "filename": "proprietary-files.txt",
         "patchSetId": 1
