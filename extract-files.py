@@ -18,7 +18,6 @@ from extract_utils.main import (
     ExtractUtilsModule,
 )
 
-
 namespace_imports = [
     'device/oneplus/dre',
     'hardware/oplus',
