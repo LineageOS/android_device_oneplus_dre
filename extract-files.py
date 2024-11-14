@@ -59,8 +59,6 @@ blob_fixups: blob_fixups_user_type = {
         .add_needed('libcrypto_shim.so'),
     'product/etc/sysconfig/com.android.hotwordenrollment.common.util.xml': blob_fixup()
         .regex_replace('/my_product', '/product'),
-    'system_ext/framework/oplus-ims-ext.jar': blob_fixup()
-        .apktool_patch('blob-patches/oplus-ims-ext.patch', '-r'),
     'system_ext/lib/libwfdmmsrc_system.so': blob_fixup()
         .add_needed('libgui_shim.so'),
     'system_ext/lib/libwfdservice.so': blob_fixup()
@@ -68,13 +66,13 @@ blob_fixups: blob_fixups_user_type = {
     'system_ext/lib64/libwfdnative.so': blob_fixup()
         .replace_needed('android.hidl.base@1.0.so', 'libhidlbase.so')
         .add_needed('libinput_shim.so'),
-    'vendor/etc/init/android.hardware.neuralnetworks@1.3-service-qti.rc': blob_fixup()
-        .regex_replace('writepid /dev/stune/nnapi-hal/tasks', 'task_profiles NNApiHALPerformance'),
     'vendor/etc/init/vendor.qti.media.c2@1.0-service.rc': blob_fixup()
         .regex_replace('writepid /dev/cpuset/foreground/tasks', 'task_profiles ProcessCapacityHigh'),
     'vendor/etc/libnfc-nci.conf': blob_fixup()
         .regex_replace('NFC_DEBUG_ENABLED=1', 'NFC_DEBUG_ENABLED=0'),
-    ('vendor/etc/media_codecs.xml', 'vendor/etc/media_codecs_holi.xml', 'vendor/etc/media_codecs_holi_vendor.xml'): blob_fixup()
+    'vendor/etc/media_holi/video_system_specs.json': blob_fixup()
+        .regex_replace('"max_retry_alloc_output_timeout": 2000,', '"max_retry_alloc_output_timeout": 0,'),
+    ('vendor/etc/media_codecs.xml', 'vendor/etc/media_codecs_blair.xml', 'vendor/etc/media_codecs_blair_lite.xml', 'vendor/etc/media_codecs_holi.xml'): blob_fixup()
         .regex_replace('.*media_codecs_(google_audio|google_c2|google_telephony|vendor_audio).*\n', ''),
     'vendor/etc/msm_irqbalance.conf': blob_fixup()
         .regex_replace('IGNORED_IRQ=19,21,38$', 'IGNORED_IRQ=19,21,38,209,218'),
