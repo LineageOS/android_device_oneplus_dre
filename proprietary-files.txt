@@ -78,10 +78,8 @@ vendor/lib/rfsa/adsp/libscveT2T_skel.so
 vendor/lib/rfsa/adsp/libsns_device_mode_skel.so;SYMLINK=vendor/lib64/rfsa/adsp/libsns_device_mode_skel.so
 vendor/lib/rfsa/adsp/libsns_low_lat_stream_skel.so;SYMLINK=vendor/lib64/rfsa/adsp/libsns_low_lat_stream_skel.so
 
-# ANT+
-system_ext/lib/com.qualcomm.qti.ant@1.0.so
-system_ext/lib64/com.qualcomm.qti.ant@1.0.so
-vendor/lib64/hw/com.dsi.ant@1.0-impl.so
+# ANT+ - from LE2125_14.0.0.720(EX01)
+vendor/lib64/hw/com.dsi.ant@1.0-impl.so|ab5ad99ff48dac2cbe87e8c2847161bc302d1923
 
 # Audio libraries
 vendor/lib/soundfx/libasphere.so
@@ -102,32 +100,41 @@ vendor/lib/libhdmipassthru.so
 vendor/lib/libqtigef.so
 vendor/lib64/libadsprpc.so
 
-# Bluetooth
-vendor/bin/hw/android.hardware.bluetooth@1.0-service-qti
-vendor/etc/init/android.hardware.bluetooth@1.0-service-qti.rc
-vendor/lib/hw/android.hardware.bluetooth@1.0-impl-qti.so
-vendor/lib/libbtnv.so
-vendor/lib64/hw/android.hardware.bluetooth@1.0-impl-qti.so
-vendor/lib64/libbtnv.so
-vendor/lib64/libsoc_helper.so
+# Bluetooth - from LE2125_14.0.0.720(EX01)
+vendor/bin/hw/android.hardware.bluetooth@1.0-service-qti|801aeb458a8d7fbbf56599981ae0c3a1bcf9d32a
+vendor/etc/init/android.hardware.bluetooth@1.0-service-qti.rc|ebf60c17d1fbd737c6f6b043241e2ce18b3fcaa1
+vendor/lib/hw/android.hardware.bluetooth@1.0-impl-qti.so|ecaad4f00669bfd54f3a41c2a1186cfc5600edd6
+vendor/lib/libbtnv.so|e642f7a5d0bd59a8409209486b37658d5e757721
+vendor/lib/libsoc_helper.so|a80d8e4e2740cbfb369270581475b5921ced5077
+vendor/lib64/hw/android.hardware.bluetooth@1.0-impl-qti.so|65cbc32456db100cf4babc418424fa5b3d581e8e
+vendor/lib64/libbtnv.so|84bbe7a0911631d0394f87e8739f719db866e025
+vendor/lib64/libsoc_helper.so|1a76b2e9151c6bf3a0576999b4ca9fa2e65da6ed
 
-# Bluetooth (A2DP)
-vendor/lib/hw/vendor.qti.hardware.bluetooth_audio@2.0-impl.so
-vendor/lib/hw/vendor.qti.hardware.bluetooth_sar@1.1-impl.so
-vendor/lib/hw/vendor.qti.hardware.btconfigstore@1.0-impl.so
-vendor/lib/hw/vendor.qti.hardware.btconfigstore@2.0-impl.so
-vendor/lib/btaudio_offload_if.so
-vendor/lib/libbluetooth_audio_session_qti.so
-vendor/lib/vendor.qti.hardware.bluetooth_sar@1.0.so
-vendor/lib/vendor.qti.hardware.bluetooth_sar@1.1.so
-vendor/lib64/hw/vendor.qti.hardware.bluetooth_audio@2.0-impl.so
-vendor/lib64/hw/vendor.qti.hardware.bluetooth_sar@1.1-impl.so
-vendor/lib64/hw/vendor.qti.hardware.btconfigstore@1.0-impl.so
-vendor/lib64/hw/vendor.qti.hardware.btconfigstore@2.0-impl.so
-vendor/lib64/btaudio_offload_if.so
-vendor/lib64/libbluetooth_audio_session_qti.so
-vendor/lib64/vendor.qti.hardware.bluetooth_sar@1.0.so
-vendor/lib64/vendor.qti.hardware.bluetooth_sar@1.1.so
+# Bluetooth (A2DP) - from LE2125_14.0.0.720(EX01)
+odm/lib/libbluetooth_audio_extend_factory_client.so|f387bd64693acd5192ebe767bb31fac78b34499d
+odm/lib/vendor.oplus.hardware.bluetooth_audio_extend@2.1.so|7696aa748c0ae5bb4e200c100cc705f9fc2c7180
+odm/lib64/libbluetooth_audio_extend_factory_client.so|2363d96d4724c5c50c71944d3ab0faba46a660d3
+odm/lib64/vendor.oplus.hardware.bluetooth_audio_extend@2.1.so|68b29714755a494f7ceeea5302a8f3fa17423224
+vendor/lib/hw/vendor.qti.hardware.bluetooth_audio@2.0-impl.so|27316a4a9725437bdb1df0116f78fe73b6bbbf17
+vendor/lib/hw/vendor.qti.hardware.bluetooth_audio@2.1-impl.so|e0ac4deeda6ec32ebd929ded4fa144508393c000
+vendor/lib/hw/vendor.qti.hardware.bluetooth_sar@1.1-impl.so|2443909c9c1489a254a45bc47ca41dd5b935d08f
+vendor/lib/hw/vendor.qti.hardware.btconfigstore@1.0-impl.so|4279398476187e4eaee25b17cc724bd300f79ce5
+vendor/lib/hw/vendor.qti.hardware.btconfigstore@2.0-impl.so|26924b6fcfa37beaf7a3cea26a088fef3dc78265
+vendor/lib/btaudio_offload_if.so|4423b604489b2127980ec0ca5c8a7d5998f73d97
+vendor/lib/libbluetooth_audio_session_qti.so|562967862bd5b19394c43c032796d77d9c5b2269
+vendor/lib/libbluetooth_audio_session_qti_2_1.so|c6069aa7798ae32adba88b7436b17bf44202ca75
+vendor/lib/vendor.qti.hardware.bluetooth_sar@1.0.so|33801f28c861c1c8556fa5daad26323e48a9c529
+vendor/lib/vendor.qti.hardware.bluetooth_sar@1.1.so|7b7135e7947366d0028410bdb5ffa57cdbe58ef6
+vendor/lib64/hw/vendor.qti.hardware.bluetooth_audio@2.0-impl.so|1def0ab01bb2647d7bece252211886cf6d3f74fd
+vendor/lib64/hw/vendor.qti.hardware.bluetooth_audio@2.1-impl.so|4a8963453c6a41d1a0c65f2316da6814493e14c0
+vendor/lib64/hw/vendor.qti.hardware.bluetooth_sar@1.1-impl.so|dcdd0a74362b64e54278b5fb9cb903e9e91c0af3
+vendor/lib64/hw/vendor.qti.hardware.btconfigstore@1.0-impl.so|374f62d697c3a1af3293962e97c852c5d1f87e57
+vendor/lib64/hw/vendor.qti.hardware.btconfigstore@2.0-impl.so|4b26be5a786078ba7176233d4c0957f55ff65952
+vendor/lib64/btaudio_offload_if.so|95aea246c9dc2583b0cc37648f8515249a3aa9cb
+vendor/lib64/libbluetooth_audio_session_qti.so|0023b876ea15948911954abcc3840b8503d4e847
+vendor/lib64/libbluetooth_audio_session_qti_2_1.so|934500aa31fa1d88f72ce29f62f1370d1d7fca4c
+vendor/lib64/vendor.qti.hardware.bluetooth_sar@1.0.so|6b49865f15b9f2ae1f049623018db08a0bdbc03a
+vendor/lib64/vendor.qti.hardware.bluetooth_sar@1.1.so|16af46f837b2b617dcf146ac478d08ea1a9800d1
 
 # Camera - from DE2117_11.C.34
 odm/etc/camera/asd/class.dlc|0303c404d43f8aca151551cdf779fabb55738a84
@@ -981,12 +988,12 @@ odm/vendor/firmware/goodixfp.b07|450bf7245b6a2e2c4ab5d92b64badd472ba3cbb0
 odm/vendor/firmware/goodixfp.mdt|c6caa1def77190e216fa2ed6eb7bfae9cd7f8e53
 vendor/lib64/vendor.oplus.hardware.commondcs@1.0.so:odm/lib64/vendor.oplus.hardware.commondcs@1.0.so|02e67cac1e468ee300148d87cfa3be39958047dd
 
-# FM
-system_ext/lib64/fm_helium.so
-system_ext/lib64/libfm-hci.so
-system_ext/lib64/vendor.qti.hardware.fm@1.0.so
-vendor/lib64/hw/vendor.qti.hardware.fm@1.0-impl.so
-vendor/lib64/vendor.qti.hardware.fm@1.0.so;MODULE_SUFFIX=_vendor
+# FM - from LE2125_14.0.0.720(EX01)
+system_ext/lib64/fm_helium.so|f67fc530027c32455d5b06984b14854641689712
+system_ext/lib64/libfm-hci.so|3ce381e1902bdf5dcbd60e22e601f29398cb8d97
+system_ext/lib64/vendor.qti.hardware.fm@1.0.so|1fae109f511f0dc7de8261dcaeef71f232486684
+vendor/lib64/hw/vendor.qti.hardware.fm@1.0-impl.so|6819718ea5f2d00c5da8ad215c4d11fd794e6a0e
+vendor/lib64/vendor.qti.hardware.fm@1.0.so;MODULE_SUFFIX=_vendor|8bb6c293e00c49fc69378815b872b7ed0b67189b
 
 # Gatekeeper
 vendor/bin/hw/android.hardware.gatekeeper@1.0-service-qti
