@@ -1254,13 +1254,13 @@ vendor/bin/msm_irqbalance
 # IRQ balance - from DE2117_11.C.34
 vendor/etc/msm_irqbalance.conf|1c1c2c568953546f67ce24c497ca5bd58a581cf8|298dc27a89520ed92b3c99ef0f95209e4b77279b
 
-# Kernel
-vendor/bin/init.kernel.post_boot-blair.sh
-vendor/bin/init.kernel.post_boot-holi.sh
-vendor/bin/init.kernel.post_boot.sh
-vendor/bin/init.qti.kernel.sh
-vendor/bin/vendor_modprobe.sh
-vendor/etc/init/hw/init.qti.kernel.rc
+# Kernel - from Fogos U1UGS34.23-110-2-1
+vendor/bin/init.kernel.post_boot-blair.sh|cd5ce1032fc750f545adea3b67066853e81d020c|7e187ca6573ce0815daac9d8a79e0f6d1142209f
+vendor/bin/init.kernel.post_boot-holi.sh|85a6a76b21db596bf06180a83a7b6369af773293|da69f675aa706fd6c13d17892157bf471cdf5d9a
+vendor/bin/init.kernel.post_boot.sh|a6b39a91a61c92a42dff1f8565f37917c60827f4
+vendor/bin/init.qti.kernel.sh|1c17e31a8edfc0b188802d280af9a85038f96b60
+vendor/bin/vendor_modprobe.sh|d6f572abb7aba5c12077607ec18c221388b86394
+vendor/etc/init/hw/init.qti.kernel.rc|91245b402447c148f770abe09c416c05c6757a21
 
 # Keymaster
 vendor/bin/hw/android.hardware.keymaster@4.1-service-qti

@@ -66,6 +66,10 @@ blob_fixups: blob_fixups_user_type = {
     'system_ext/lib64/libwfdnative.so': blob_fixup()
         .replace_needed('android.hidl.base@1.0.so', 'libhidlbase.so')
         .add_needed('libinput_shim.so'),
+    'vendor/bin/init.kernel.post_boot-blair.sh': blob_fixup()
+        .patch_file('blob-patches/init-post-boot-blair.patch'),
+    'vendor/bin/init.kernel.post_boot-holi.sh': blob_fixup()
+        .patch_file('blob-patches/init-post-boot-holi.patch'),
     'vendor/etc/init/vendor.qti.media.c2@1.0-service.rc': blob_fixup()
         .regex_replace('writepid /dev/cpuset/foreground/tasks', 'task_profiles ProcessCapacityHigh'),
     'vendor/etc/libnfc-nci.conf': blob_fixup()

@@ -1,0 +1,14 @@
+--- a/init.kernel.post_boot-blair.sh
++++ b/init.kernel.post_boot-blair.sh
+@@ -32,11 +32,6 @@
+ #=============================================================================
+ 
+ function configure_zram_parameters() {
+-	# Moto yangbq2: Skip this if we are using zram from fstab.
+-	using_zram_from_fstab=`getprop ro.boot.using_zram_from_fstab`
+-	if [ "$using_zram_from_fstab" == "true" ]; then
+-		return
+-	fi
+ 	MemTotalStr=`cat /proc/meminfo | grep MemTotal`
+ 	MemTotal=${MemTotalStr:16:8}
+ 
