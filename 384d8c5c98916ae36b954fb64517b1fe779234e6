@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "dad2bff0_523f7e78",
+        "filename": "Android.mk",
+        "patchSetId": 1
+      },
+      "lineNbr": 31,
+      "author": {
+        "id": 4550
+      },
+      "writtenOn": "2024-12-04T01:35:25Z",
+      "side": 0,
+      "message": "It\u0027s not unused",
+      "range": {
+        "startLine": 14,
+        "startChar": 0,
+        "endLine": 31,
+        "endChar": 102
+      },
+      "revId": "384d8c5c98916ae36b954fb64517b1fe779234e6",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
+    }
+  ]
+}
