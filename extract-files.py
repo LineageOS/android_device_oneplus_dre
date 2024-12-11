@@ -65,6 +65,7 @@ blob_fixups: blob_fixups_user_type = {
         .replace_needed('android.media.audio.common.types-V2-cpp.so', 'android.media.audio.common.types-V4-cpp.so'),
     'system_ext/lib64/libwfdnative.so': blob_fixup()
         .replace_needed('android.hidl.base@1.0.so', 'libhidlbase.so')
+        .add_needed('libbinder_shim.so')
         .add_needed('libinput_shim.so'),
     'vendor/bin/init.kernel.post_boot-blair.sh': blob_fixup()
         .patch_file('blob-patches/init-post-boot-blair.patch'),
