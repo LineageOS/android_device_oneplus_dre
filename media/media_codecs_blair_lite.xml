@@ -79,6 +79,7 @@
 
 <MediaCodecs>
     <Settings>
+        <Domain name="telephony" enabled="true" />
         <Setting name="max-video-encoder-input-buffers" value="11" />
     </Settings>
     <Settings>
