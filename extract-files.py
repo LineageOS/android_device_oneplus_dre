@@ -94,8 +94,6 @@ blob_fixups: blob_fixups_user_type = {
         .regex_replace('NFC_DEBUG_ENABLED=1', 'NFC_DEBUG_ENABLED=0'),
     'vendor/etc/media_holi/video_system_specs.json': blob_fixup()
         .regex_replace('"max_retry_alloc_output_timeout": 2000,', '"max_retry_alloc_output_timeout": 0,'),
-    ('vendor/etc/media_codecs.xml', 'vendor/etc/media_codecs_blair.xml', 'vendor/etc/media_codecs_blair_lite.xml', 'vendor/etc/media_codecs_holi.xml'): blob_fixup()
-        .regex_replace('.*media_codecs_(google_audio|google_c2|google_telephony|vendor_audio).*\n', ''),
     'vendor/etc/msm_irqbalance.conf': blob_fixup()
         .regex_replace('IGNORED_IRQ=19,21,38$', 'IGNORED_IRQ=19,21,38,209,218'),
     'vendor/etc/qdcm_calib_data_nt36672c_tm_fhd_plus_video_mode_dsi_panel.xml': blob_fixup()
