@@ -1,5 +1,5 @@
 ## All proprietary files from this list, unless pinned and noted otherwise,
-## are from CPH2467_14.0.0.1320(EX01).
+## are from CPH2467_14.0.0.1330(EX01) .
 
 # ACDB - from DE2117_11.C.34
 odm/etc/acdbdata/Audio_Parameter_Version.txt|5ca7048cb6c53d0af7193467e2e12ddd19d71fa9
