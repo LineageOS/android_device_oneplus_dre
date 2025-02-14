@@ -33,6 +33,24 @@
       "message": "You aren\u0027t supposed to use random qdcm calibration file that\u0027s not even written for your display panel, am I missing something?",
       "revId": "1756323755dd7fff13e6142d88f85fa2ca3fc0d6",
       "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2fc17e65_ded69dec",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 25732
+      },
+      "writtenOn": "2025-02-14T23:21:55Z",
+      "side": 1,
+      "message": "That\u0027s correct, those aren\u0027t even applied given it must match your panel name\n\nYou\u0027re basically breaking everything that doesn\u0027t use the native colorspace, so DCI-P3 and HDR content",
+      "parentUuid": "852826cd_d302f855",
+      "revId": "1756323755dd7fff13e6142d88f85fa2ca3fc0d6",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
     }
   ]
 }
