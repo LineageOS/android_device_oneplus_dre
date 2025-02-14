@@ -16,6 +16,23 @@
       "message": "Much better fix than keeping saturated color mode",
       "revId": "1756323755dd7fff13e6142d88f85fa2ca3fc0d6",
       "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "852826cd_d302f855",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 4550
+      },
+      "writtenOn": "2025-02-14T23:09:24Z",
+      "side": 1,
+      "message": "You aren\u0027t supposed to use random qdcm calibration file that\u0027s not even written for your display panel, am I missing something?",
+      "revId": "1756323755dd7fff13e6142d88f85fa2ca3fc0d6",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
     }
   ]
 }
