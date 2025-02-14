@@ -7,7 +7,8 @@
 
     <!-- Indicate available ColorDisplayManager.COLOR_MODE_xxx. -->
     <integer-array name="config_availableColorModes">
-        <item>2</item> <!-- COLOR_MODE_SATURATED -->
+        <item>0</item> <!-- COLOR_MODE_NATURAL -->
+        <item>1</item> <!-- COLOR_MODE_BOOSTED -->
     </integer-array>
 
     <!-- Control whether the always on display mode is available. This should only be enabled on
