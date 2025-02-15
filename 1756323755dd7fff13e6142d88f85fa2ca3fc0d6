@@ -51,6 +51,24 @@
       "parentUuid": "852826cd_d302f855",
       "revId": "1756323755dd7fff13e6142d88f85fa2ca3fc0d6",
       "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "2cb4b6a9_0559e95a",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 18745
+      },
+      "writtenOn": "2025-02-15T00:36:40Z",
+      "side": 1,
+      "message": "Neither DCI-P3 nor HDR are supported by this device, and it doesn\u0027t seem to support sRGB properly, so forcing native colorspace is the whole point.\n\nThe data being imported here is for nt36672e, but it should be \"close enough\" to what dre uses (nt36672c) that it\u0027s not going to make a difference. Just in case, I will try modifying the oplus calibration data and see if that\u0027s a better fix.",
+      "parentUuid": "2fc17e65_ded69dec",
+      "revId": "1756323755dd7fff13e6142d88f85fa2ca3fc0d6",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
     }
   ]
 }
