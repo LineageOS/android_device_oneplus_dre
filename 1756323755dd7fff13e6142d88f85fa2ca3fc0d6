@@ -69,6 +69,23 @@
       "parentUuid": "2fc17e65_ded69dec",
       "revId": "1756323755dd7fff13e6142d88f85fa2ca3fc0d6",
       "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "be34f302_3689cad1",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 19979
+      },
+      "writtenOn": "2025-02-15T18:19:30Z",
+      "side": 1,
+      "message": "On all other platforms novatek has their own calibration file, Holi is the only outlier based on display-product.mk. I figured this was an easy approach to address the issue.",
+      "revId": "1756323755dd7fff13e6142d88f85fa2ca3fc0d6",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
     }
   ]
 }
