@@ -98,6 +98,12 @@ blob_fixups: blob_fixups_user_type = {
         .regex_replace('.*media_codecs_(google_audio|google_c2|google_telephony|vendor_audio).*\n', ''),
     'vendor/etc/msm_irqbalance.conf': blob_fixup()
         .regex_replace('IGNORED_IRQ=19,21,38$', 'IGNORED_IRQ=19,21,38,209,218'),
+    'vendor/etc/qdcm_calib_data_nt36672c_tm_fhd_plus_video_mode_dsi_panel.xml': blob_fixup()
+        .regex_replace('FeatureType="2" Disable="false"', 'FeatureType="2" Disable="true"')
+        .regex_replace('FeatureType="7" Disable="false"', 'FeatureType="7" Disable="true"')
+        .regex_replace('FeatureType="8" Disable="false"', 'FeatureType="8" Disable="true"')
+        .regex_replace('20121_v1_20201113', 'native')
+        .regex_replace('SRGB', 'sRGB'),
     'vendor/lib64/hw/com.qti.chi.override.so': blob_fixup()
         .add_needed('libcamera_metadata_shim.so'),
 }  # fmt: skip
