@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "07c09de4_6f1ca811",
+        "filename": "extract-files.py",
+        "patchSetId": 1
+      },
+      "lineNbr": 110,
+      "author": {
+        "id": 10067
+      },
+      "writtenOn": "2025-02-17T19:48:05Z",
+      "side": 1,
+      "message": "is it necessary on this device?",
+      "revId": "4642d4b7b0c92985b0676caac661a26e3a209c61",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
+    }
+  ]
+}
