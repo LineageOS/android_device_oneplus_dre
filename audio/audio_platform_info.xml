@@ -129,6 +129,7 @@
         <!--#Le.li@PSW.MM.AudioDriver.HAL, 2020/10/11, Add for audio conifg config end -->
         <!--#Juqiang.Geng@MULTIMEDIA.AUDIODRIVER.HAL.OPLUS_FEATURE_AP_LVIMFS, 2020/08/24, Add for AP LVIMFS-->
         <param key="record_use_ap_lvimfs" value="enable"/>
+        <param key="record_use_ap_lvacfs" value="enable"/>
         <!--#Juqiang.Geng@MULTIMEDIA.AUDIODRIVER.HAL, 2020/08/24, Add for AP LVIMFS end-->
         <!--#Nan.Zhong@MULTIMEDIA.AUDIODRIVER.HAL, 2020/11/13, Add for tty mode-->
         <param key="oplus_tty_support" value="0"/>
