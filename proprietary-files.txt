@@ -131,6 +131,8 @@ odm/etc/lvimfs_params/LVIMFS_Parameter_ID21_USB_Normal.txt|d71c71902cd0690fc427c
 odm/etc/lvimfs_params/LVIMFS_Parameter_ID22_USB_APP1.txt|4afab240183e10e0dfabe44c68d3f96286046233
 odm/etc/lvimfs_params/LVIMFS_Parameter_ID23_BT_Normal.txt|4afab240183e10e0dfabe44c68d3f96286046233
 odm/etc/lvimfs_params/LVIMFS_Parameter_ID24_BT_APP1.txt|d06f245cc25a70b556100af2d38638d0251feb0e
+odm/lib/liblvimfs.so|51955be664d0d88044d212c9f1f96924eeb816f7
+odm/lib/liblvimfs_wrapper.so|d099f079a134900932db8fb2417b4e98e14ea05d
 
 # Bluetooth - from LE2125_14.0.0.720(EX01)
 vendor/bin/hw/android.hardware.bluetooth@1.0-service-qti|801aeb458a8d7fbbf56599981ae0c3a1bcf9d32a
