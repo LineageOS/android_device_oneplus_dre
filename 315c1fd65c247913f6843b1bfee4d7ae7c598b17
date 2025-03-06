@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "effdd546_0f7dcccd",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 2
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 18745
+      },
+      "writtenOn": "2025-03-06T05:38:44Z",
+      "side": 1,
+      "message": "This device originally shipped with LVIMFS, not LVACFS.",
+      "revId": "315c1fd65c247913f6843b1bfee4d7ae7c598b17",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
+    }
+  ]
+}
