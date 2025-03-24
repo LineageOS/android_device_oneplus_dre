@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b13d1d03_329c5700",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 21290
+      },
+      "writtenOn": "2025-03-24T17:00:59Z",
+      "side": 1,
+      "message": "If you didn\u0027t already apply the blob patch, pick https://github.com/cupid-development/android_device_xiaomi_sm8450-common/commit/75e197d0bbe51beb1df310a7dcd2f7a543057492 instead.",
+      "revId": "d47efa330db47f0deba53017c3daeeb94747a3d5",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
+    }
+  ]
+}
