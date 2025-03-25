@@ -16,6 +16,24 @@
       "message": "Im getting SMS issues with these patches, maybe I missed something else.",
       "revId": "131b4c975786182b3e2ad224ae13fe3caeb45329",
       "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "7c0fe0dc_c80e6e04",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 21290
+      },
+      "writtenOn": "2025-03-25T18:07:37Z",
+      "side": 1,
+      "message": "make sure that the property is actually set for you, you can use `qtigetprop` to check the value of the property.\nIf you tried this with the bash version of the generate_qcril_db tool, it might have applied this migration too early and it was overwritten since the bash tool included the directory in the sorting, so device/* was always preferred over vendor/*.\n(The python variant [PS2 here] handles this correctly and only sorts by the filename.)",
+      "parentUuid": "739f53ff_c64c8b0b",
+      "revId": "131b4c975786182b3e2ad224ae13fe3caeb45329",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
     }
   ]
 }
