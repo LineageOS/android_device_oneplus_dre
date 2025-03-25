@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "739f53ff_c64c8b0b",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 19979
+      },
+      "writtenOn": "2025-03-25T16:02:46Z",
+      "side": 1,
+      "message": "Im getting SMS issues with these patches, maybe I missed something else.",
+      "revId": "131b4c975786182b3e2ad224ae13fe3caeb45329",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
+    }
+  ]
+}
