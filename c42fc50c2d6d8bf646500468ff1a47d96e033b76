@@ -16,6 +16,24 @@
       "message": "With this commit this whole section can go now",
       "revId": "c42fc50c2d6d8bf646500468ff1a47d96e033b76",
       "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "908dbd6a_ccc80b79",
+        "filename": "proprietary-files.txt",
+        "patchSetId": 1
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 18745
+      },
+      "writtenOn": "2025-03-25T21:12:17Z",
+      "side": 1,
+      "message": "Acknowledged",
+      "parentUuid": "5e06ac20_145dc5f4",
+      "revId": "c42fc50c2d6d8bf646500468ff1a47d96e033b76",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
     }
   ]
 }
