@@ -54,6 +54,9 @@ blob_fixups: blob_fixups_user_type = {
         .add_needed('libcrypto_shim.so'),
     'product/etc/sysconfig/com.android.hotwordenrollment.common.util.xml': blob_fixup()
         .regex_replace('/my_product', '/product'),
+    'system_ext/etc/seccomp_policy/wfdservice.policy': blob_fixup()
+        .add_line_if_missing('memfd_create: 1')
+        .add_line_if_missing('rt_tgsigqueueinfo: 1'),
     'system_ext/lib/libwfdmmsrc_system.so': blob_fixup()
         .add_needed('libgui_shim.so'),
     'system_ext/lib/libwfdservice.so': blob_fixup()
