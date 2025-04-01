@@ -57,6 +57,8 @@ blob_fixups: blob_fixups_user_type = {
     'system_ext/etc/seccomp_policy/wfdservice.policy': blob_fixup()
         .add_line_if_missing('memfd_create: 1')
         .add_line_if_missing('rt_tgsigqueueinfo: 1'),
+    'system_ext/lib/libwfdaudiofoundation.so': blob_fixup()
+        .replace_needed('android.media.audio.common.types-V3-cpp.so', 'android.media.audio.common.types-V4-cpp.so'),
     'system_ext/lib/libwfdmmsrc_system.so': blob_fixup()
         .add_needed('libgui_shim.so'),
     'system_ext/lib/libwfdservice.so': blob_fixup()
