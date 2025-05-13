@@ -16,6 +16,24 @@
       "message": "Wrong section",
       "revId": "fceb6355d9b041c195cb4b921b82385e8bdbec5b",
       "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c76d5ecf_d0e2a04d",
+        "filename": "device.mk",
+        "patchSetId": 1
+      },
+      "lineNbr": 204,
+      "author": {
+        "id": 13648
+      },
+      "writtenOn": "2025-05-13T07:59:41Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "609a017a_9398a81a",
+      "revId": "fceb6355d9b041c195cb4b921b82385e8bdbec5b",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
     }
   ]
 }
