@@ -88,6 +88,13 @@ blob_fixups: blob_fixups_user_type = {
         .patch_file('blob-patches/init-post-boot-holi.patch'),
     'vendor/etc/init/vendor.qti.media.c2@1.0-service.rc': blob_fixup()
         .regex_replace('writepid /dev/cpuset/foreground/tasks', 'task_profiles ProcessCapacityHigh'),
+    ('vendor/etc/media_codecs.xml','vendor/etc/media_codecs_blair.xml','vendor/etc/media_codecs_blair_lite.xml','vendor/etc/media_codecs_holi.xml'): blob_fixup()
+        .regex_replace('\n    <Include href="media_codecs_google_audio.xml" />', '')
+        .regex_replace('\n    <Include href="media_codecs_vendor_audio.xml" />', '')
+        .regex_replace('\n    <Include href="media_codecs_google_telephony.xml" />', '')
+        .regex_replace('\n    <Include href="media_codecs_google_c2.xml" />', '')
+        .regex_replace('\n    <Include href="media_codecs_c2_audio.xml" />', '')
+        .regex_replace('\n        <Setting name="max-video-encoder-input-buffers" value="11" />', '\n        <Domain name="telephony" enabled="true" />\n        <Setting name="max-video-encoder-input-buffers" value="11" />'),
     'vendor/etc/media_holi/video_system_specs.json': blob_fixup()
         .regex_replace('"max_retry_alloc_output_timeout": 2000,', '"max_retry_alloc_output_timeout": 0,'),
     'vendor/etc/libnfc-nci.conf': blob_fixup()
