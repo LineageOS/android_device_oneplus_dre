@@ -16,6 +16,24 @@
       "message": "Should probably apply this to (sm6375/sm8350)-common as well, if they use the feature",
       "revId": "2bc1661c7d15ba6524c649cf1208bdeea864fb68",
       "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0e3d3278_c63da44a",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 4550
+      },
+      "writtenOn": "2025-07-01T11:06:09Z",
+      "side": 1,
+      "message": "This is handled in hardware/qcom-caf/common/BoardConfigQcom.mk so I wouldn\u0027t recommend picking this commit to non-pixel device trees",
+      "parentUuid": "7054fd56_211d675f",
+      "revId": "2bc1661c7d15ba6524c649cf1208bdeea864fb68",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
     }
   ]
 }
