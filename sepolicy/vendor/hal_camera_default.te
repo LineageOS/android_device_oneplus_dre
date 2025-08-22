@@ -1,1 +1,0 @@
-allow hal_camera_default proc_flash_light_file:file rw_file_perms;

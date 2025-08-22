@@ -1,1 +1,0 @@
-genfscon proc /qcom_flash           u:object_r:proc_flash_light_file:s0
