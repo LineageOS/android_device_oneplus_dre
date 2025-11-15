@@ -1,7 +1,7 @@
 ## All proprietary files from this list, unless pinned and noted otherwise,
 ## are from CPH2467_14.0.0.1320(EX01).
 
-# ACDB - from DE2117_11.C.34
+# ACDB - from DE2117_11.C.37
 odm/etc/acdbdata/Audio_Parameter_Version.txt|5ca7048cb6c53d0af7193467e2e12ddd19d71fa9
 odm/etc/acdbdata/Bluetooth_cal.acdb|3a151ca12899db9278c6795a9be0e03f4339367b
 odm/etc/acdbdata/General_cal.acdb|220a94d8de69f19a2368c6db3ec2a4b533fb61df
@@ -100,7 +100,7 @@ vendor/lib64/libadsprpc.so
 odm/lib/lib_lvacfs.so
 odm/lib/liblvacfs_wrapper.so
 
-# Audio LVIMFS - from DE2117_11.C.34
+# Audio LVIMFS - from DE2117_11.C.37
 odm/etc/lvimfs_params/LVACFS_Configuration.txt|024b3814ee9d35b2954c253ae1a25311d4724902
 odm/etc/lvimfs_params/LVIMFS_Calibration_2mic.dat|ae8a5e7c7ee1a036ebf19a93d0e4e6ad804421ed
 odm/etc/lvimfs_params/LVIMFS_Parameter_ID1_MIC_Normal.txt|b3ba0a1e4330ab2c06ed91935775d73410f95e75
@@ -166,7 +166,7 @@ vendor/lib64/libbluetooth_audio_session_qti_2_1.so|934500aa31fa1d88f72ce29f62f13
 vendor/lib64/vendor.qti.hardware.bluetooth_sar@1.0.so|6b49865f15b9f2ae1f049623018db08a0bdbc03a
 vendor/lib64/vendor.qti.hardware.bluetooth_sar@1.1.so|16af46f837b2b617dcf146ac478d08ea1a9800d1
 
-# Camera - from DE2117_11.C.34
+# Camera - from DE2117_11.C.37
 odm/etc/camera/asd/class.dlc|0303c404d43f8aca151551cdf779fabb55738a84
 odm/etc/camera/asd/detect.dlc|9a8c7dfa78b6cf8bc9f116f234b47c4384f1500a
 odm/etc/camera/ashdr/ncf_pack.ncf|1758fb709a0375c754c2e6f3a34c8093538956f7
@@ -697,8 +697,8 @@ vendor/lib64/camera/fdconfigpreview.bin|caf04e55d04ba717c8618faa125c1708efe44c1a
 vendor/lib64/camera/fdconfigpreviewlite.bin|e95052671b9eec7ff53b665482b7b85b7dac0c62
 vendor/lib64/camera/fdconfigvideo.bin|c3303efadaa16495aee7e508a07f9000a435e8a2
 vendor/lib64/camera/fdconfigvideolite.bin|2d4648c313fa28fb83272f39ad64fd3bd0ff826d
-vendor/lib64/hw/camera.qcom.so|6d415d421c1a1c19c96b765009afd29b986c4f5a
-vendor/lib64/hw/com.qti.chi.override.so|4d43f2de504bd143a117ddb3b2886d33c5a3bf22|292385a6a522d65a726c1d1b2cd5e18304256da5
+vendor/lib64/hw/camera.qcom.so|cc31f6e349cad62cbd3e067fc38547c90e685d4f
+vendor/lib64/hw/com.qti.chi.override.so|9637ffe7bfaa2799b7cf86973f3e7d8fbfa3344b|5d0b99ca56af3b763357524d99bb551c48634e50
 vendor/lib64/com.qti.chiusecaseselector.so|a35b657ea98415d110fb95c5b15066bb58dbdc34
 vendor/lib64/com.qti.feature2.anchorsync.so|d17bc4f703021706c98d5418cb20eb5b707f6cc1
 vendor/lib64/com.qti.feature2.demux.so|d35be36b8f793c0db5f748681633c11d155dd8b8
@@ -876,7 +876,7 @@ vendor/lib64/libcvp_common.so
 vendor/lib64/libcvpcpuRev_skel.so
 vendor/lib64/vendor.qti.hardware.cvp@1.0.so
 
-# CVP firmware - from DE2117_11.C.34
+# CVP firmware - from DE2117_11.C.37
 vendor/firmware/evass.b01|0ba927944b4ecb3160d10bf1fbdf8c0a24b4135d
 vendor/firmware/evass.b02|f9215f6edcdf711ed37d033dcc1af70bdcb358bd
 vendor/firmware/evass.b03|817d0f1aa1dd38a187de8ee0b92fa5d27bf2c700
@@ -999,8 +999,8 @@ vendor/lib64/libssd.so
 vendor/lib64/libtzdrmgenprov.so
 vendor/lib64/vendor.qti.hardware.qseecom@1.0.so
 
-# Fingerprint - from DE2117_11.C.34
-odm/bin/hw/vendor.oplus.hardware.biometrics.fingerprint@2.1-service|c474de24c630610634eb974e7e9c6a26e0ffd4ee
+# Fingerprint - from DE2117_11.C.37
+odm/bin/hw/vendor.oplus.hardware.biometrics.fingerprint@2.1-service|8ae1f13680191151058b40c69fa0f6f4ad593c86
 odm/bin/init.oplus.fingerprints.sh|950befd6f64d4055bf47ab066a0a1e0080e6191e
 odm/etc/init/vendor.oplus.hardware.biometrics.fingerprint@2.1-service.rc|e4dc71dbcf48df8e4a5fbf9a14048698046cbe0b
 odm/etc/vintf/manifest/manifest_oplus_fingerprint.xml|78ca4f56ed1f5dd48c186718718fd9513629851e
@@ -1070,12 +1070,12 @@ vendor/lib64/libkernelmanager.so
 vendor/lib64/libllvm-glnext.so
 vendor/lib64/libllvm-qcom.so
 
-# Graphics (Adreno firmware) - from DE2117_11.C.34
+# Graphics (Adreno firmware) - from DE2117_11.C.37
 vendor/firmware/a615_zap.b00|55c1a14a5699d05f796a982448711159f8208951
-vendor/firmware/a615_zap.b01|d0d60f0aaba8b507b19cae0e83a821dfc69b1a87
+vendor/firmware/a615_zap.b01|a753f53c8c7715aa0269b080a24c3c6ff0a59694
 vendor/firmware/a615_zap.b02|4ae54047f9629f2470a5d58f3940c5eb51298b96
-vendor/firmware/a615_zap.elf|4b7a87b7124c93d48d1dcced587d86c23de2c2db
-vendor/firmware/a615_zap.mdt|8128cbe0197787d1787437a2f5db45da3d81cda9
+vendor/firmware/a615_zap.elf|0d65f06baa2de5c9d22c57c5c1470e9fa9a4da11
+vendor/firmware/a615_zap.mdt|29777fb920fc871c04e4a0ac0ba07a853d386161
 vendor/firmware/a619_gmu.bin|0c211ef8a3246d649a4ae52a926d128b61e3c264
 vendor/firmware/a630_sqe.fw|3be171586a5600b8a0253a0e267d1eb96cd82290
 vendor/firmware/a660_gmu.bin|7e23fae9ac6dfaf0219280c83e0086b8e97082b1
@@ -1269,19 +1269,19 @@ vendor/lib64/vendor.qti.hardware.iop@2.0.so
 # IPA firmware
 vendor/etc/init/ipa_fws.rc
 
-# IPA firmware - from DE2117_11.C.34
+# IPA firmware - from DE2117_11.C.37
 vendor/firmware/ipa_fws.b00|eb24330c9d96f1b75ae07968484734e4c2a59c75
-vendor/firmware/ipa_fws.b01|5d5d573396a732eedfd944d1f81f756d867d1c72
+vendor/firmware/ipa_fws.b01|c659c8afaaa27145c7d499564eee364028c73664
 vendor/firmware/ipa_fws.b02|cd418e2434a5698bf7a2f8844171f1b2ddd4b57a
 vendor/firmware/ipa_fws.b03|c07cfef57f8f694b4cee41e78700614efbedf2bc
 vendor/firmware/ipa_fws.b04|7aa0ec649f20af523f21c6e19014987f86f18dff
-vendor/firmware/ipa_fws.elf|39783ab86f99b7bf1d506682b59ff4071b1f135f
-vendor/firmware/ipa_fws.mdt|0dccf48f1620e528a9bf3fc8929f83e09a09519b
+vendor/firmware/ipa_fws.elf|9103334c1cc07d320cc4d80f912e0c2129dafbf2
+vendor/firmware/ipa_fws.mdt|59d3f76009592e29a4883fd3659b7fa9e853d4ae
 
 # IRQ balance
 vendor/bin/msm_irqbalance
 
-# IRQ balance - from DE2117_11.C.34
+# IRQ balance - from DE2117_11.C.37
 vendor/etc/msm_irqbalance.conf|1c1c2c568953546f67ce24c497ca5bd58a581cf8|298dc27a89520ed92b3c99ef0f95209e4b77279b
 
 # Kernel - from Fogos U1UGS34.23-110-2-1
@@ -1353,7 +1353,7 @@ vendor/lib64/libmmosal.so;MODULE_SUFFIX=_vendor
 # Native public libraries
 vendor/etc/public.libraries.txt
 
-# NFC - from DE2117_11.C.34
+# NFC - from DE2117_11.C.37
 odm/etc/nfc/libnfc-nci.conf_20818:vendor/etc/libnfc-nci.conf|ec1d66cb7fb1a03a99270f9b893de7ee586f7972|af0df368c0edd9272ec1265f7144d4b09e20c41b
 odm/etc/nfc/libnfc-st21h_conf.txt_20818:vendor/etc/libnfc-st21h_conf.txt|f69535ba7cc30b8fc7f30d7db895233c77430ace
 odm/etc/nfc/nfc_conf_ref|d3f90262a5762117e519dd55361b8d7742bfb764
@@ -1594,7 +1594,7 @@ vendor/lib64/vendor.qti.hardware.radio.uim_remote_client@1.1.so
 vendor/lib64/vendor.qti.hardware.radio.uim_remote_client@1.2.so
 vendor/lib64/vendor.qti.hardware.radio.uim_remote_server@1.0.so
 
-# Sensors - from DE2117_11.C.34
+# Sensors - from DE2117_11.C.37
 odm/etc/sensor/config/alsps.json|637ccbc1d44b97e52c25cf89c38eb23add3e7cfc
 odm/etc/sensor/config/holi_alsps.json|373fcdf0c181fc4857766172a85907a1b5a42867
 odm/etc/sensor/config/holi_bmi26x_0.json|9b32a305c4d9e6b64e7c31bac128adcda83c2ff8
@@ -1798,7 +1798,7 @@ vendor/bin/time_daemon
 vendor/etc/init/init.time_daemon.rc
 vendor/lib64/libtime_genoff.so
 
-# Touchscreen firmware - from DE2117_11.C.34
+# Touchscreen firmware - from DE2117_11.C.37
 odm/firmware/tp/133144/FW_NF_ILI7807S_TIANMA.img;SYMLINK=odm/firmware/tp/133180/FW_NF_ILI7807S_TIANMA.img|57128b45ffd464032b07b5bb34b70b760014ac28
 odm/firmware/tp/133144/FW_NF_ILI7807S_TIANMA_FAE.img;SYMLINK=odm/firmware/tp/133180/FW_NF_ILI7807S_TIANMA_FAE.img|a892bebde4c7e5bd1cf1b3925ca8cedba69c401b
 odm/firmware/tp/133144/FW_NF_NT36672C_DSJM.img;SYMLINK=odm/firmware/tp/133180/FW_NF_NT36672C_DSJM.img|8f9770d361f9db1f99cc6a00dad189e54a269329
@@ -1832,7 +1832,7 @@ vendor/lib64/vendor.qti.hardware.vpp@1.2.so
 vendor/lib64/vendor.qti.hardware.vpp@1.3.so
 vendor/lib64/vendor.qti.hardware.vpp@2.0.so
 
-# VPU firmware - from DE2117_11.C.34
+# VPU firmware - from DE2117_11.C.37
 vendor/firmware/vpu20_4v.b01|18d7f096d032f45d2735e49b1753c6ea71c975ac
 vendor/firmware/vpu20_4v.b02|f98b37380cc5d3b72541f5ad19d4eb465540e1eb
 vendor/firmware/vpu20_4v.b03|7772b18b16e520641e8051fd6284384e9b0e1939
