@@ -102,7 +102,7 @@ blob_fixups: blob_fixups_user_type = {
         .regex_replace('FeatureType="8" Disable="false"', 'FeatureType="8" Disable="true"')
         .regex_replace('20121_v1_20201113', 'native')
         .regex_replace('SRGB', 'sRGB'),
-    'vendor/lib64/hw/com.qti.chi.override.so': blob_fixup()
+    'vendor/lib64/hw/camera.qcom.so': blob_fixup()
         .add_needed('libcamera_metadata_shim.so'),
     (
         'vendor/lib64/libdpps.so',
