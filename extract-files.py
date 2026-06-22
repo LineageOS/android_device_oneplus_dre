@@ -73,8 +73,12 @@ blob_fixups: blob_fixups_user_type = {
         .add_needed('libcrypto_shim.so'),
     'product/etc/sysconfig/com.android.hotwordenrollment.common.util.xml': blob_fixup()
         .regex_replace('/my_product', '/product'),
+    'system/framework/WfdCommon.jar': blob_fixup()
+        .apktool_patch('blob-patches/WfdCommon.patch'),
     'system_ext/lib64/libwfdnative.so': blob_fixup()
         .add_needed('libinput_shim.so'),
+    'system_ext/lib64/libwfdservice.so': blob_fixup()
+        .replace_needed('android.media.audio.common.types-V4-cpp.so', 'android.media.audio.common.types-V5-cpp.so'),
     'vendor/bin/init.kernel.post_boot-blair.sh': blob_fixup()
         .patch_file('blob-patches/init-post-boot-blair.patch'),
     'vendor/bin/init.kernel.post_boot-holi.sh': blob_fixup()
