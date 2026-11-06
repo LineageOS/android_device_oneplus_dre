@@ -1016,7 +1016,6 @@ odm/vendor/firmware/goodixfp.b05|ac45c20a9376e4fe66b9ec19677b6c43edd31983
 odm/vendor/firmware/goodixfp.b06|6e23da6647e1a117b827aaa32271199b42293ccb
 odm/vendor/firmware/goodixfp.b07|450bf7245b6a2e2c4ab5d92b64badd472ba3cbb0
 odm/vendor/firmware/goodixfp.mdt|c6caa1def77190e216fa2ed6eb7bfae9cd7f8e53
-vendor/lib64/vendor.oplus.hardware.commondcs@1.0.so:odm/lib64/vendor.oplus.hardware.commondcs@1.0.so|02e67cac1e468ee300148d87cfa3be39958047dd
 
 # FM - from LE2125_14.0.0.720(EX01)
 system_ext/lib64/fm_helium.so|f67fc530027c32455d5b06984b14854641689712
