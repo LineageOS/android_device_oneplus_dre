@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "7585ead8_3bff231e",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 4
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 38624
+      },
+      "writtenOn": "2026-11-14T03:48:04Z",
+      "side": 1,
+      "message": "I\u0027ve never submitted a patch here, but hopefully this is helpful.  I\u0027ve done as much verification as I can without flashing my device.",
+      "revId": "4ad3915a340968d33dd383338f202f45366bb068",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
+    }
+  ]
+}
