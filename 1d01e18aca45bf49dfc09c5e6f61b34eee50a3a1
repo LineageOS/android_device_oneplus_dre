@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "d8f44672_1edffd7f",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 19979
+      },
+      "writtenOn": "2026-11-26T15:07:57Z",
+      "side": 1,
+      "message": "Do we need the service or could we just go this route? https://review.lineageos.org/c/LineageOS/android_device_oneplus_sm8150-common/+/512735",
+      "revId": "1d01e18aca45bf49dfc09c5e6f61b34eee50a3a1",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71"
+    }
+  ]
+}
